@@ -1,19 +1,28 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
+const missingEnvMessage = 'Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in a .env.local file.';
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: true
-  }
-});
+export const supabase: SupabaseClient = (supabaseUrl && supabaseAnonKey)
+    ? createClient(supabaseUrl, supabaseAnonKey, {
+        auth: {
+            autoRefreshToken: true,
+            persistSession: true,
+            detectSessionInUrl: true
+        }
+    })
+    : ({
+        auth: {
+            async signUp() { throw new Error(missingEnvMessage); },
+            async signInWithPassword() { throw new Error(missingEnvMessage); },
+            async signInWithOAuth() { throw new Error(missingEnvMessage); },
+            async signOut() { throw new Error(missingEnvMessage); },
+            async getSession() { throw new Error(missingEnvMessage); },
+            async getUser() { throw new Error(missingEnvMessage); }
+        }
+    } as unknown as SupabaseClient);
 
 // Auth helper functions
 export const signUp = async (email: string, password: string, fullName: string) => {
