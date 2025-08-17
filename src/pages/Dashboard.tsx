@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { 
-  LogOut, 
-  Zap, 
+  LogOut,
   PenTool, 
   Image, 
   RefreshCw, 
@@ -16,6 +15,7 @@ import {
   X
 } from 'lucide-react';
 import { signOut } from '../lib/supabase';
+import Logo from '../components/Logo';
 
 // Import feature components
 import PostGenerator from '../components/features/PostGenerator';
@@ -133,21 +133,16 @@ const Dashboard = () => {
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <div className="min-h-screen bg-[#040715] flex">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-[#111827] border-r border-gray-700/50 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-white/90 backdrop-blur-sm border-r border-slate-200/50 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-gray-50">Supergrow.ai</span>
-            </div>
+          <div className="flex items-center justify-between p-6 border-b border-slate-200/50">
+            <Logo />
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-gray-400 hover:text-white"
+              className="lg:hidden text-slate-400 hover:text-slate-600"
             >
               <X className="w-5 h-5" />
             </button>
@@ -157,7 +152,7 @@ const Dashboard = () => {
           <nav className="flex-1 overflow-y-auto p-4 space-y-6">
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                   {section.category}
                 </h3>
                 <div className="space-y-1">
@@ -174,16 +169,16 @@ const Dashboard = () => {
                         }}
                         className={`w-full flex items-start space-x-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                           isActive
-                            ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'
-                            : 'text-gray-300 hover:text-white hover:bg-gray-700/30'
+                            ? 'bg-indigo-100/80 text-indigo-600 border border-indigo-200/50'
+                            : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100/50'
                         }`}
                       >
-                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-indigo-400' : 'text-gray-400 group-hover:text-white'}`} />
+                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
                         <div>
-                          <div className={`font-medium ${isActive ? 'text-indigo-400' : 'text-gray-300 group-hover:text-white'}`}>
+                          <div className={`font-medium ${isActive ? 'text-indigo-600' : 'text-slate-600 group-hover:text-slate-800'}`}>
                             {item.name}
                           </div>
-                          <div className="text-xs text-gray-500 mt-1 leading-relaxed">
+                          <div className="text-xs text-slate-500 mt-1 leading-relaxed">
                             {item.description}
                           </div>
                         </div>
@@ -196,10 +191,10 @@ const Dashboard = () => {
           </nav>
 
           {/* Sign Out */}
-          <div className="p-4 border-t border-gray-700/50">
+          <div className="p-4 border-t border-slate-200/50">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center gap-3 px-3 py-3 text-gray-300 hover:text-white hover:bg-gray-700/30 rounded-xl transition-colors"
+              className="w-full flex items-center gap-3 px-3 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100/50 rounded-xl transition-colors"
             >
               <LogOut className="w-5 h-5" />
               <span>Sign Out</span>
@@ -211,23 +206,18 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Mobile Header */}
-        <header className="lg:hidden bg-[#111827] border-b border-gray-700/50 px-4 py-3">
+        <header className="lg:hidden bg-white/90 backdrop-blur-sm border-b border-slate-200/50 px-4 py-3">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-gray-300 hover:text-white"
+              className="text-slate-600 hover:text-slate-800"
             >
               <Menu className="w-6 h-6" />
             </button>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-md flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-bold text-gray-50">Supergrow.ai</span>
-            </div>
+            <Logo size="sm" />
             <button
               onClick={handleSignOut}
-              className="text-gray-300 hover:text-white"
+              className="text-slate-600 hover:text-slate-800"
             >
               <LogOut className="w-5 h-5" />
             </button>
@@ -235,8 +225,8 @@ const Dashboard = () => {
         </header>
 
         {/* Page Content */}
-        <main className="min-h-screen bg-[#040715]">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.1)_0%,transparent_50%)]"></div>
+        <main className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/20 via-purple-100/10 to-pink-100/20"></div>
           <div className="relative">
             <Routes>
               <Route path="/" element={<DashboardHome />} />
@@ -257,7 +247,7 @@ const Dashboard = () => {
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-slate-900 bg-opacity-50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

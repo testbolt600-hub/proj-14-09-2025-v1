@@ -59,13 +59,13 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.08)_0%,transparent_50%)]"></div>
+    <section id="pricing" className="py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50 relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-indigo-50/20 to-pink-50/30"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-50 mb-6">
-            Find the Perfect Plan for Your <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Growth</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+            Find the Perfect Plan for Your <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Growth</span>
           </h2>
         </div>
 
@@ -73,10 +73,10 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`group relative bg-[#111827] backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl ${
+              className={`group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl ${
                 plan.popular 
-                  ? 'border-indigo-500 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30' 
-                  : 'border-gray-700/50 hover:border-indigo-500/50 hover:shadow-indigo-500/10'
+                  ? 'border-indigo-400 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30' 
+                  : 'border-slate-200/50 hover:border-indigo-300/50 hover:shadow-indigo-500/10'
               } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 0.2}s` }}
             >
@@ -93,18 +93,20 @@ const Pricing = () => {
               <div className="text-center mb-8">
                 <div className={`w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center ${
                   plan.popular 
-                    ? 'bg-gradient-to-r from-indigo-500 to-violet-600' 
-                    : 'bg-gray-700'
+                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600' 
+                    : 'bg-slate-200'
                 }`}>
-                  {plan.icon}
+                  <div className={plan.popular ? 'text-white' : 'text-slate-600'}>
+                    {plan.icon}
+                  </div>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-50 mb-2">{plan.name}</h3>
-                <p className="text-gray-400 mb-4">{plan.description}</p>
+                <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+                <p className="text-slate-600 mb-4">{plan.description}</p>
                 
                 <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-4xl font-bold text-gray-50">{plan.price}</span>
-                  <span className="text-gray-400">/{plan.period}</span>
+                  <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+                  <span className="text-slate-600">/{plan.period}</span>
                 </div>
               </div>
 
@@ -112,10 +114,10 @@ const Pricing = () => {
               <div className="space-y-4 mb-8">
                 {plan.features.map((feature, featureIndex) => (
                   <div key={featureIndex} className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-5 h-5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-gray-300">{feature}</span>
+                    <span className="text-slate-600">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -123,8 +125,8 @@ const Pricing = () => {
               {/* CTA Button */}
               <button className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
                 plan.buttonVariant === 'gradient'
-                  ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:shadow-lg hover:shadow-indigo-500/25 transform hover:scale-105'
-                  : 'border border-gray-600 text-gray-300 hover:border-indigo-500 hover:text-white'
+                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:shadow-lg hover:shadow-indigo-500/25 transform hover:scale-105'
+                  : 'border border-slate-300 text-slate-700 hover:border-indigo-400 hover:text-indigo-600'
               }`}>
                 {plan.buttonText}
               </button>

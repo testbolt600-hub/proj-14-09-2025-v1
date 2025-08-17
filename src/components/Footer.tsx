@@ -1,5 +1,6 @@
 import React from 'react';
-import { Zap, Linkedin, Twitter, Youtube, Mail } from 'lucide-react';
+import { Linkedin, Twitter, Youtube, Mail } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -11,11 +12,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">Supergrow.ai</span>
+            <div className="mb-4">
+              <Logo showText={true} />
             </div>
             <p className="text-slate-300 mb-6">
               AI-powered career growth platform for professionals, job seekers, and brand builders.

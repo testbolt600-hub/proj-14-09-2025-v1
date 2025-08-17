@@ -78,13 +78,13 @@ const SocialProof = () => {
             return (
               <div
                 key={index}
-                className={`text-center transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`text-center transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} flex flex-col items-center`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300">
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300 w-full h-full flex flex-col items-center justify-center">
                   <Icon className={`w-8 h-8 ${stat.color} mx-auto mb-4`} />
                   <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.number}</div>
-                  <div className="text-slate-600 text-sm font-medium">{stat.label}</div>
+                  <div className="text-slate-600 text-sm font-medium text-center">{stat.label}</div>
                 </div>
               </div>
             );
