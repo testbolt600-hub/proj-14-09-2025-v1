@@ -107,10 +107,10 @@ const DashboardHome = () => {
     <div className="p-6 max-w-7xl mx-auto">
       {/* Welcome Section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-50 mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Welcome back to Career Clarified
         </h1>
-        <p className="text-gray-300">
+        <p className="text-slate-300">
           Ready to accelerate your career growth? Let's create something amazing today.
         </p>
       </div>
@@ -123,15 +123,15 @@ const DashboardHome = () => {
             <button
               key={index}
               onClick={() => navigate(action.path)}
-              className="group bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/10 text-left"
+              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-violet-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-violet-500/25 text-left hover:bg-slate-800/80"
             >
-              <div className={`w-12 h-12 bg-gradient-to-r ${action.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-12 h-12 bg-gradient-to-r ${action.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                 <Icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-50 mb-2 group-hover:text-indigo-400 transition-colors">
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-violet-300 transition-colors">
                 {action.title}
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-slate-300 text-sm group-hover:text-slate-200 transition-colors">
                 {action.description}
               </p>
             </button>
@@ -146,18 +146,18 @@ const DashboardHome = () => {
           return (
             <div
               key={index}
-              className="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:shadow-lg transition-all duration-300"
+              className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 hover:border-violet-400/30 hover:bg-slate-800/80"
             >
               <div className="flex items-center justify-between mb-4">
                 <Icon className={`w-6 h-6 ${stat.color}`} />
-                <span className="text-green-400 text-sm font-medium bg-green-900/30 px-2 py-1 rounded-full">
+                <span className="text-emerald-400 text-sm font-medium bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
                   {stat.change}
                 </span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-50 mb-1">
+              <h3 className="text-2xl font-bold text-white mb-1">
                 {stat.value}
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-slate-300 text-sm">
                 {stat.title}
               </p>
             </div>
@@ -168,17 +168,17 @@ const DashboardHome = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Activity */}
         <div className="lg:col-span-2">
-          <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700">
-            <h2 className="text-xl font-bold text-gray-50 mb-6">Recent Activity</h2>
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-violet-400/30 transition-all duration-300">
+            <h2 className="text-xl font-bold text-white mb-6">Recent Activity</h2>
             <div className="space-y-4">
               {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-700 transition-colors">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div key={index} className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-700/50 transition-colors">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full shadow-sm shadow-emerald-400/50"></div>
                   <div className="flex-1">
-                    <p className="text-gray-50 font-medium">{activity.action}</p>
-                    <p className="text-gray-400 text-sm">{activity.time}</p>
+                    <p className="text-white font-medium">{activity.action}</p>
+                    <p className="text-slate-400 text-sm">{activity.time}</p>
                   </div>
-                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <CheckCircle className="w-5 h-5 text-emerald-400" />
                 </div>
               ))}
             </div>
@@ -186,24 +186,24 @@ const DashboardHome = () => {
         </div>
 
         {/* Quick Tips */}
-        <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-gray-50 mb-6">Career Tips</h2>
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-violet-400/30 transition-all duration-300">
+          <h2 className="text-xl font-bold text-white mb-6">Career Tips</h2>
           <div className="space-y-4">
-            <div className="p-4 bg-indigo-900/30 rounded-xl border border-indigo-800/50">
-              <h3 className="font-semibold text-indigo-300 mb-2">Post Consistently</h3>
-              <p className="text-indigo-200 text-sm">
+            <div className="p-4 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300">
+              <h3 className="font-semibold text-violet-300 mb-2">Post Consistently</h3>
+              <p className="text-violet-200 text-sm">
                 Share valuable content 3-5 times per week to build authority.
               </p>
             </div>
-            <div className="p-4 bg-purple-900/30 rounded-xl border border-purple-800/50">
-              <h3 className="font-semibold text-purple-300 mb-2">Optimize Keywords</h3>
-              <p className="text-purple-200 text-sm">
+            <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 rounded-xl border border-fuchsia-400/30 hover:border-fuchsia-400/50 transition-all duration-300">
+              <h3 className="font-semibold text-fuchsia-300 mb-2">Optimize Keywords</h3>
+              <p className="text-fuchsia-200 text-sm">
                 Use industry keywords in your profile and posts for better visibility.
               </p>
             </div>
-            <div className="p-4 bg-green-900/30 rounded-xl border border-green-800/50">
-              <h3 className="font-semibold text-green-300 mb-2">Engage Authentically</h3>
-              <p className="text-green-200 text-sm">
+            <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300">
+              <h3 className="font-semibold text-emerald-300 mb-2">Engage Authentically</h3>
+              <p className="text-emerald-200 text-sm">
                 Comment meaningfully on others' posts to build relationships.
               </p>
             </div>

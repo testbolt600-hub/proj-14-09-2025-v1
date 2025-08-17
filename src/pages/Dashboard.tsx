@@ -133,16 +133,16 @@ const Dashboard = () => {
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="min-h-screen bg-slate-950 flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-gray-800 border-r border-gray-700 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-slate-900 border-r border-slate-800 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-700">
+          <div className="flex items-center justify-between p-6 border-b border-slate-800">
             <Logo />
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-gray-400 hover:text-gray-300"
+              className="lg:hidden text-slate-400 hover:text-slate-300"
             >
               <X className="w-5 h-5" />
             </button>
@@ -152,7 +152,7 @@ const Dashboard = () => {
           <nav className="flex-1 overflow-y-auto p-4 space-y-6">
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
                   {section.category}
                 </h3>
                 <div className="space-y-1">
@@ -169,16 +169,16 @@ const Dashboard = () => {
                         }}
                         className={`w-full flex items-start space-x-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                           isActive
-                            ? 'bg-indigo-600 text-white'
-                            : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                            ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-500/25'
+                            : 'text-slate-300 hover:text-white hover:bg-slate-800'
                         }`}
                       >
-                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`} />
+                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-300'}`} />
                         <div>
-                          <div className={`font-medium ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                          <div className={`font-medium ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                             {item.name}
                           </div>
-                          <div className="text-xs text-gray-500 mt-1 leading-relaxed">
+                          <div className="text-xs text-slate-500 mt-1 leading-relaxed">
                             {item.description}
                           </div>
                         </div>
@@ -191,10 +191,10 @@ const Dashboard = () => {
           </nav>
 
           {/* Sign Out */}
-          <div className="p-4 border-t border-gray-700">
+          <div className="p-4 border-t border-slate-800">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center gap-3 px-3 py-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-xl transition-colors"
+              className="w-full flex items-center gap-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-colors"
             >
               <LogOut className="w-5 h-5" />
               <span>Sign Out</span>
@@ -206,18 +206,18 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Mobile Header */}
-        <header className="lg:hidden bg-gray-800 border-b border-gray-700 px-4 py-3">
+        <header className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-3">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-gray-400 hover:text-gray-300"
+              className="text-slate-400 hover:text-slate-300"
             >
               <Menu className="w-6 h-6" />
             </button>
             <Logo size="sm" />
             <button
               onClick={handleSignOut}
-              className="text-gray-400 hover:text-gray-300"
+              className="text-slate-400 hover:text-slate-300"
             >
               <LogOut className="w-5 h-5" />
             </button>
@@ -225,7 +225,7 @@ const Dashboard = () => {
         </header>
 
         {/* Page Content */}
-        <main className="min-h-screen bg-gray-900">
+        <main className="min-h-screen bg-slate-950">
           <div className="relative">
             <Routes>
               <Route path="/" element={<DashboardHome />} />
