@@ -28,7 +28,7 @@ const Problem = () => {
               <div className="space-y-4 text-slate-600">
                 <p className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-red-400 rounded-full mt-3 flex-shrink-0"></span>
-                  Your resume disappears into the "ATS black hole" while less qualified candidates get interviews
+                  Your resume disappears into the "ATS black hole\" while less qualified candidates get interviews
                 </p>
                 <p className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-red-400 rounded-full mt-3 flex-shrink-0"></span>
