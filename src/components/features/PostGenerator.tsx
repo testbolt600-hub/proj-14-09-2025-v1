@@ -131,8 +131,8 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
           <PenTool className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">Post Generator</h1>
-          <p className="text-slate-600 mt-1">Create optimized LinkedIn posts with AI assistance</p>
+          <h1 className="text-3xl font-bold text-gray-50">Post Generator</h1>
+          <p className="text-gray-300 mt-1">Create optimized LinkedIn posts with AI assistance</p>
         </div>
       </div>
 
@@ -140,9 +140,9 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
         {/* Main Editor */}
         <div className="lg:col-span-2 space-y-6">
           {/* AI Generation */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-lg">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-indigo-500" />
+          <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700 shadow-lg">
+            <h3 className="text-lg font-semibold text-gray-50 mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-indigo-400" />
               AI Content Generation
             </h3>
             

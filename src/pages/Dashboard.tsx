@@ -133,16 +133,16 @@ const Dashboard = () => {
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 flex">
+    <div className="min-h-screen bg-gray-900 flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-white/90 backdrop-blur-sm border-r border-slate-200/50 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-gray-800 border-r border-gray-700 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b border-slate-200/50">
+          <div className="flex items-center justify-between p-6 border-b border-gray-700">
             <Logo />
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-slate-400 hover:text-slate-600"
+              className="lg:hidden text-gray-400 hover:text-gray-300"
             >
               <X className="w-5 h-5" />
             </button>
@@ -152,7 +152,7 @@ const Dashboard = () => {
           <nav className="flex-1 overflow-y-auto p-4 space-y-6">
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx}>
-                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
                   {section.category}
                 </h3>
                 <div className="space-y-1">
@@ -169,16 +169,16 @@ const Dashboard = () => {
                         }}
                         className={`w-full flex items-start space-x-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                           isActive
-                            ? 'bg-indigo-100/80 text-indigo-600 border border-indigo-200/50'
-                            : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100/50'
+                            ? 'bg-indigo-600 text-white'
+                            : 'text-gray-300 hover:text-white hover:bg-gray-700'
                         }`}
                       >
-                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
+                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`} />
                         <div>
-                          <div className={`font-medium ${isActive ? 'text-indigo-600' : 'text-slate-600 group-hover:text-slate-800'}`}>
+                          <div className={`font-medium ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
                             {item.name}
                           </div>
-                          <div className="text-xs text-slate-500 mt-1 leading-relaxed">
+                          <div className="text-xs text-gray-500 mt-1 leading-relaxed">
                             {item.description}
                           </div>
                         </div>
@@ -191,10 +191,10 @@ const Dashboard = () => {
           </nav>
 
           {/* Sign Out */}
-          <div className="p-4 border-t border-slate-200/50">
+          <div className="p-4 border-t border-gray-700">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center gap-3 px-3 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100/50 rounded-xl transition-colors"
+              className="w-full flex items-center gap-3 px-3 py-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-xl transition-colors"
             >
               <LogOut className="w-5 h-5" />
               <span>Sign Out</span>
@@ -206,18 +206,18 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Mobile Header */}
-        <header className="lg:hidden bg-white/90 backdrop-blur-sm border-b border-slate-200/50 px-4 py-3">
+        <header className="lg:hidden bg-gray-800 border-b border-gray-700 px-4 py-3">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-slate-600 hover:text-slate-800"
+              className="text-gray-400 hover:text-gray-300"
             >
               <Menu className="w-6 h-6" />
             </button>
             <Logo size="sm" />
             <button
               onClick={handleSignOut}
-              className="text-slate-600 hover:text-slate-800"
+              className="text-gray-400 hover:text-gray-300"
             >
               <LogOut className="w-5 h-5" />
             </button>
@@ -225,8 +225,7 @@ const Dashboard = () => {
         </header>
 
         {/* Page Content */}
-        <main className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/20 via-purple-100/10 to-pink-100/20"></div>
+        <main className="min-h-screen bg-gray-900">
           <div className="relative">
             <Routes>
               <Route path="/" element={<DashboardHome />} />
@@ -247,7 +246,7 @@ const Dashboard = () => {
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-slate-900 bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
