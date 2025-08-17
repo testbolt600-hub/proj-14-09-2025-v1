@@ -10,7 +10,7 @@ const Testimonials = () => {
       name: "Sarah Chen",
       title: "Founder @ TechFlow",
       image: "https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      quote: "Supergrow transformed my LinkedIn presence completely. I went from 500 followers to 15,000 in just 6 months. The AI carousel generator is pure magic!",
+      quote: "Career Clarified transformed my LinkedIn presence completely. I went from 500 followers to 15,000 in just 6 months. The AI carousel generator is pure magic!",
       rating: 5
     },
     {

@@ -1,17 +1,17 @@
 import React from 'react';
-import { Eye, TrendingUp, FileText, User, Target, Award } from 'lucide-react';
+import { Eye, Lightbulb, List, BarChart3, User, Trophy } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Templates = () => {
   const [ref, isInView] = useInView();
 
   const templates = [
-    { name: "Thought Leadership", icon: <TrendingUp className="w-6 h-6" />, color: "from-indigo-500 to-blue-500" },
-    { name: "Listicle", icon: <FileText className="w-6 h-6" />, color: "from-violet-500 to-purple-500" },
-    { name: "Case Study", icon: <Target className="w-6 h-6" />, color: "from-purple-500 to-pink-500" },
+    { name: "Thought Leadership", icon: <Lightbulb className="w-6 h-6" />, color: "from-indigo-500 to-blue-500" },
+    { name: "Listicle", icon: <List className="w-6 h-6" />, color: "from-violet-500 to-purple-500" },
+    { name: "Case Study", icon: <BarChart3 className="w-6 h-6" />, color: "from-purple-500 to-pink-500" },
     { name: "Personal Story", icon: <User className="w-6 h-6" />, color: "from-pink-500 to-rose-500" },
-    { name: "Achievement", icon: <Award className="w-6 h-6" />, color: "from-rose-500 to-orange-500" },
-    { name: "Tips & Tricks", icon: <TrendingUp className="w-6 h-6" />, color: "from-orange-500 to-yellow-500" },
+    { name: "Achievement", icon: <Trophy className="w-6 h-6" />, color: "from-rose-500 to-orange-500" },
+    { name: "Tips & Tricks", icon: <Lightbulb className="w-6 h-6" />, color: "from-orange-500 to-yellow-500" },
   ];
 
   return (

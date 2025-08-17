@@ -1,5 +1,5 @@
 import React from 'react';
-import { Palette, PenTool, Calendar } from 'lucide-react';
+import { Image, PenTool, Calendar } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Features = () => {
@@ -7,7 +7,7 @@ const Features = () => {
 
   const features = [
     {
-      icon: <Palette className="w-8 h-8" />,
+      icon: <Image className="w-8 h-8" />,
       title: "Stunning Carousels, No Design Skills Needed.",
       description: "Choose a template, add your text, and our AI will design a professional, engaging carousel ready to post.",
       gradient: "from-indigo-500 to-violet-500"

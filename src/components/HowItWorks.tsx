@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Wand2, Rocket } from 'lucide-react';
+import { Edit3, Layout, Send } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const HowItWorks = () => {
@@ -8,19 +8,19 @@ const HowItWorks = () => {
   const steps = [
     {
       number: "1",
-      icon: <Brain className="w-8 h-8" />,
+      icon: <Edit3 className="w-8 h-8" />,
       title: "Ideate & Write",
       description: "Start with an idea or let our AI suggest topics. Write and refine your post with our smart assistant."
     },
     {
       number: "2",
-      icon: <Wand2 className="w-8 h-8" />,
+      icon: <Layout className="w-8 h-8" />,
       title: "Design & Visualize",
       description: "Instantly turn your text into a beautiful carousel using our professionally designed templates."
     },
     {
       number: "3",
-      icon: <Rocket className="w-8 h-8" />,
+      icon: <Send className="w-8 h-8" />,
       title: "Schedule & Grow",
       description: "Schedule your post for the perfect time and watch your personal brand grow on autopilot."
     }

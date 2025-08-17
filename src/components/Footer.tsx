@@ -72,7 +72,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-700 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-slate-400">© 2025 Supergrow.ai | Built with 🧠 by AI</p>
+          <p className="text-slate-400">© 2025 Career Clarified | Built with 🧠 by AI</p>
           <p className="text-slate-400 mt-4 md:mt-0">Made with ❤️ for career growth</p>
         </div>
       </div>

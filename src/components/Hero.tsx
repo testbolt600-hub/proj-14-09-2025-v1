@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Play, CheckCircle } from 'lucide-react';
+import { ArrowRight, PlayCircle, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
@@ -35,7 +35,7 @@ const Hero = () => {
             
             <button className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors group">
               <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white transition-colors shadow-lg">
-                <Play className="w-5 h-5 ml-1" />
+                <PlayCircle className="w-5 h-5" />
               </div>
               <span className="font-medium">Watch 2-Min Demo</span>
             </button>
@@ -44,7 +44,7 @@ const Hero = () => {
           {/* Trust Indicator */}
           <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center justify-center gap-2 text-slate-600 mb-8">
-              <CheckCircle className="w-5 h-5 text-green-500" />
+              <Users className="w-5 h-5 text-indigo-500" />
               <span className="font-medium">Join 10,000+ professionals who landed better roles and built stronger brands</span>
             </div>
             

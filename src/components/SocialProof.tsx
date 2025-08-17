@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, TrendingUp, Users, Award } from 'lucide-react';
+import { Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const SocialProof = () => {
@@ -49,13 +49,13 @@ const SocialProof = () => {
       color: "text-green-600"
     },
     {
-      icon: Award,
+      icon: Users,
       number: "10,000+",
       label: "Professionals transformed",
       color: "text-purple-600"
     },
     {
-      icon: Star,
+      icon: DollarSign,
       number: "$2.3M+",
       label: "In salary increases secured",
       color: "text-indigo-600"
@@ -78,13 +78,13 @@ const SocialProof = () => {
             return (
               <div
                 key={index}
-                className={`text-center transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} flex flex-col items-center`}
+                className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300 w-full h-full flex flex-col items-center justify-center">
-                  <Icon className={`w-8 h-8 ${stat.color} mx-auto mb-4`} />
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300 h-48 flex flex-col items-center justify-center text-center">
+                  <Icon className={`w-8 h-8 ${stat.color} mb-4`} />
                   <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.number}</div>
-                  <div className="text-slate-600 text-sm font-medium text-center">{stat.label}</div>
+                  <div className="text-slate-600 text-sm font-medium leading-tight px-2">{stat.label}</div>
                 </div>
               </div>
             );

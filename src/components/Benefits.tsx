@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Sparkles, RefreshCw, CheckCircle } from 'lucide-react';
+import { FileCheck, Lightbulb, RotateCcw, CheckCircle } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Benefits = () => {
@@ -7,7 +7,7 @@ const Benefits = () => {
 
   const benefits = [
     {
-      icon: Shield,
+      icon: FileCheck,
       title: "Beat The ATS Systems That Reject 75% of Resumes",
       description: "Our AI analyzes your resume against 1,000+ ATS patterns, then rewrites it to pass the robots AND impress humans. No more qualified applications disappearing into the void.",
       gradient: "from-blue-500 to-cyan-500",
@@ -21,7 +21,7 @@ const Benefits = () => {
       ]
     },
     {
-      icon: Sparkles,
+      icon: Lightbulb,
       title: "Build LinkedIn Authority Without the Content Creation Burnout",
       description: "Generate authentic posts in minutes, not hours. Our AI learns your voice and expertise, then helps you create content that builds real authority while you focus on your actual work.",
       gradient: "from-purple-500 to-pink-500",
@@ -35,7 +35,7 @@ const Benefits = () => {
       ]
     },
     {
-      icon: RefreshCw,
+      icon: RotateCcw,
       title: "Create Your Career Growth Loop (The Secret Weapon)",
       description: "Here's what most people miss: the better your role, the stronger your content becomes. The stronger your content, the better your opportunities. We optimize both sides of this loop.",
       gradient: "from-indigo-500 to-purple-500",
