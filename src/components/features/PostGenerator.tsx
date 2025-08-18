@@ -127,7 +127,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
     <div className="p-6 lg:p-8 max-w-4xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
+        <div className="w-12 h-12 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl flex items-center justify-center">
           <PenTool className="w-6 h-6 text-white" />
         </div>
         <div>
@@ -140,9 +140,9 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
         {/* Main Editor */}
         <div className="lg:col-span-2 space-y-6">
           {/* AI Generation */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-xl hover:border-cyan-400/30 transition-all duration-300">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-xl hover:border-slate-600 transition-all duration-300">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-cyan-400" />
+              <Sparkles className="w-5 h-5 text-slate-400" />
               AI Content Generation
             </h3>
             
@@ -155,7 +155,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                   <select
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 focus:outline-none"
                   >
                     {tones.map((t) => (
                       <option key={t.value} value={t.value}>{t.label}</option>
@@ -170,7 +170,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                   <select
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 focus:outline-none"
                   >
                     {industries.map((i) => (
                       <option key={i.value} value={i.value}>{i.label}</option>
@@ -188,14 +188,14 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="e.g., importance of networking in tech industry"
-                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 focus:outline-none"
                 />
               </div>
 
               <button
                 onClick={handleGenerate}
                 disabled={!prompt.trim() || isGenerating}
-                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-slate-500 hover:to-slate-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isGenerating ? (
                   <>
@@ -213,7 +213,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
           </div>
 
           {/* Content Editor */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-slate-600 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">Content Editor</h3>
               <div className="text-sm text-slate-400">
@@ -225,7 +225,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your LinkedIn post here or generate content with AI..."
-              className="w-full h-64 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none resize-none"
+              className="w-full h-64 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 focus:outline-none resize-none"
               maxLength={characterLimit}
             />
           </div>
@@ -235,7 +235,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleAnalyze}
               disabled={!content.trim() || isAnalyzing}
-              className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/20"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isAnalyzing ? (
                 <>
@@ -253,7 +253,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handlePublish}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/20"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-4 h-4" />
               Publish Now
@@ -262,7 +262,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleSchedule}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <CalendarIcon className="w-4 h-4" />
               Schedule
@@ -271,7 +271,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleSaveDraft}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-slate-500/20"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="w-4 h-4" />
               Save Draft
@@ -283,9 +283,9 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
         <div className="space-y-6">
           {/* Score Display */}
           {score !== null && (
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-slate-600 transition-all duration-300">
               <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-cyan-400" />
+                <BarChart3 className="w-5 h-5 text-slate-400" />
                 Content Score
               </h3>
               
@@ -328,7 +328,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                     <div className="space-y-2">
                       {analysis.suggestions.map((suggestion: string, index: number) => (
                         <div key={index} className="flex items-start gap-2">
-                          <AlertCircle className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
+                          <AlertCircle className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-slate-300">{suggestion}</span>
                         </div>
                       ))}
@@ -340,11 +340,11 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
           )}
 
           {/* Tips */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-slate-600 transition-all duration-300">
             <h3 className="text-lg font-semibold text-white mb-4">Writing Tips</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white">Start with a hook</p>
                   <p className="text-xs text-slate-400 mt-1">Begin with a question, statistic, or bold statement</p>
@@ -352,7 +352,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white">Use emojis sparingly</p>
                   <p className="text-xs text-slate-400 mt-1">1-3 emojis can enhance readability</p>
@@ -360,7 +360,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white">Include a call-to-action</p>
                   <p className="text-xs text-slate-400 mt-1">Ask for engagement or opinions</p>
@@ -368,7 +368,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white">Keep paragraphs short</p>
                   <p className="text-xs text-slate-400 mt-1">1-3 sentences per paragraph for mobile</p>

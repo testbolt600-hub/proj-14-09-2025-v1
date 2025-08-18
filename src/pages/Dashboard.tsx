@@ -181,7 +181,7 @@ const Dashboard = () => {
                         }}
                         className={`w-full flex items-start space-x-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                           isActive
-                            ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
+                            ? 'bg-slate-700 text-white'
                             : 'text-slate-300 hover:text-white hover:bg-slate-800'
                         }`}
                       >
