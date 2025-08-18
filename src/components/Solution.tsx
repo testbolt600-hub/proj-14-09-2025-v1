@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, FileText, TrendingUp } from 'lucide-react';
+import { Lightbulb, FileCheck, BarChart3, Target, Rocket, Users } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Solution = () => {
@@ -17,25 +17,40 @@ const Solution = () => {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Solution Content */}
           <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '0.2s' }}>
-            <div className="space-y-6 h-full">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 min-h-[140px] flex flex-col justify-between">
-                <h3 className="text-xl font-bold text-slate-800 mb-4">The Simple Truth</h3>
+            <div className="grid grid-cols-1 gap-6 h-full">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                    <Lightbulb className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-800">The Simple Truth</h3>
+                </div>
                 <p className="text-slate-600 leading-relaxed flex-1">
                   We built the first platform that understands a simple truth: your next job search and your personal brand 
                   aren't separate projects - they're part of <strong>one career growth system</strong>.
                 </p>
               </div>
               
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 min-h-[140px] flex flex-col justify-between">
-                <h3 className="text-xl font-bold text-slate-800 mb-4">Dual-Engine Platform</h3>
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                    <Target className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-800">Dual-Engine Platform</h3>
+                </div>
                 <p className="text-slate-600 leading-relaxed flex-1">
                   Our platform combines battle-tested resume optimization with authentic LinkedIn authority building. 
                   The same AI that gets your resume past the robots also helps you create content that positions you as the expert you already are.
                 </p>
               </div>
               
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200 shadow-lg min-h-[140px] flex flex-col justify-between">
-                <h3 className="text-xl font-bold text-green-800 mb-4">The Result?</h3>
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-green-800">The Result?</h3>
+                </div>
                 <p className="text-green-700 leading-relaxed flex-1">
                   You don't just land your next role - you build the reputation that makes future opportunities come to you.
                 </p>
@@ -45,31 +60,31 @@ const Solution = () => {
 
           {/* Solution Features */}
           <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`} style={{ transitionDelay: '0.4s' }}>
-            <div className="space-y-6 h-full">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 min-h-[140px] flex flex-col justify-between">
+            <div className="grid grid-cols-1 gap-6 h-full">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-white" />
+                    <FileCheck className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-800">ATS-Optimized Resumes</h3>
                 </div>
                 <p className="text-slate-600 leading-relaxed flex-1">Beat the robots with AI-powered resume optimization that gets you past ATS systems and in front of hiring managers.</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 min-h-[140px] flex flex-col justify-between">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-white" />
+                    <BarChart3 className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-800">LinkedIn Authority Building</h3>
                 </div>
                 <p className="text-slate-600 leading-relaxed flex-1">Generate authentic content that builds real authority while you focus on your actual work. No more writer's block.</p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 min-h-[140px] flex flex-col justify-between">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-white" />
+                    <Users className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-800">Integrated Growth Loop</h3>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, PenTool, Calendar } from 'lucide-react';
+import { Layout, Edit, Clock } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Features = () => {
@@ -7,19 +7,19 @@ const Features = () => {
 
   const features = [
     {
-      icon: <Image className="w-8 h-8" />,
+      icon: <Layout className="w-8 h-8" />,
       title: "Stunning Carousels, No Design Skills Needed.",
       description: "Choose a template, add your text, and our AI will design a professional, engaging carousel ready to post.",
       gradient: "from-indigo-500 to-violet-500"
     },
     {
-      icon: <PenTool className="w-8 h-8" />,
+      icon: <Edit className="w-8 h-8" />,
       title: "Beat Writer's Block Forever.",
       description: "Generate ideas, write compelling text posts from scratch, and repurpose content with our intelligent writing assistant.",
       gradient: "from-violet-500 to-purple-500"
     },
     {
-      icon: <Calendar className="w-8 h-8" />,
+      icon: <Clock className="w-8 h-8" />,
       title: "Automate Your Growth.",
       description: "Plan your content calendar and schedule posts in advance to maintain consistency and maximize your reach.",
       gradient: "from-purple-500 to-pink-500"
