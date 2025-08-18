@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const FAQ = () => {
@@ -41,11 +41,6 @@ const FAQ = () => {
     <section id="faq" className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-              <HelpCircle className="w-6 h-6 text-white" />
-            </div>
-          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
             Questions? <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">We've Got Answers</span>
           </h2>
