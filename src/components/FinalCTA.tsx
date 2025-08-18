@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Timer } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 
@@ -25,7 +25,7 @@ const FinalCTA = () => {
           {/* Urgency Element */}
           <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 mb-8 border border-indigo-200/50">
             <div className="flex items-center justify-center gap-2 text-indigo-600 mb-2">
-              <Timer className="w-5 h-5" />
+              <Clock className="w-5 h-5" />
               <span className="font-semibold">Limited Time Offer</span>
             </div>
             <p className="text-slate-700 text-sm">Get your free career analysis before our AI waitlist fills up</p>

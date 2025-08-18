@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, PenTool, Calendar } from 'lucide-react';
+import { Palette, PenTool, Calendar } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Features = () => {
@@ -7,7 +7,7 @@ const Features = () => {
 
   const features = [
     {
-      icon: <Image className="w-8 h-8" />,
+      icon: <Palette className="w-8 h-8" />,
       title: "Stunning Carousels, No Design Skills Needed.",
       description: "Choose a template, add your text, and our AI will design a professional, engaging carousel ready to post.",
       gradient: "from-indigo-500 to-violet-500"
@@ -27,7 +27,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-gradient-to-br from-slate-50 via-white to-indigo-50 relative">
+    <section id="features" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-purple-50/20 to-pink-50/30"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

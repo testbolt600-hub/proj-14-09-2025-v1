@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileX, Clock, MessageSquareX } from 'lucide-react';
+import { XCircle, Clock, MessageSquare } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Problem = () => {
@@ -20,7 +20,7 @@ const Problem = () => {
             <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border border-red-100 h-full flex flex-col">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
-                  <FileX className="w-6 h-6 text-white" />
+                  <XCircle className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800">For Job Seekers</h3>
               </div>
@@ -49,7 +49,7 @@ const Problem = () => {
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100 h-full flex flex-col">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                  <MessageSquareX className="w-6 h-6 text-white" />
+                  <MessageSquare className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800">For Brand Builders</h3>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileCheck, Lightbulb, RotateCcw, CheckCircle } from 'lucide-react';
+import { Shield, Lightbulb, RefreshCw, CheckCircle } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Benefits = () => {
@@ -7,7 +7,7 @@ const Benefits = () => {
 
   const benefits = [
     {
-      icon: FileCheck,
+      icon: Shield,
       title: "Beat The ATS Systems That Reject 75% of Resumes",
       description: "Our AI analyzes your resume against 1,000+ ATS patterns, then rewrites it to pass the robots AND impress humans. No more qualified applications disappearing into the void.",
       gradient: "from-blue-500 to-cyan-500",
@@ -35,27 +35,27 @@ const Benefits = () => {
       ]
     },
     {
-      icon: RotateCcw,
-      title: "Create Your Career Growth Loop (The Secret Weapon)",
-      description: "Here's what most people miss: the better your role, the stronger your content becomes. The stronger your content, the better your opportunities. We optimize both sides of this loop.",
+      icon: RefreshCw,
+      title: "Transform Careers",
+      description: "Join thousands of professionals who've accelerated their careers by treating job search and personal branding as one integrated system. The results speak for themselves.",
       gradient: "from-indigo-500 to-purple-500",
       bgGradient: "from-indigo-50 to-purple-50",
       borderColor: "border-indigo-100",
       features: [
-        "Integrated career strategy",
-        "Compound growth effects",
-        "Opportunity magnetism",
-        "Long-term positioning"
+        "Career acceleration",
+        "Personal brand building",
+        "Integrated approach",
+        "Proven results"
       ]
     }
   ];
 
   return (
-    <section id="benefits" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className={`text-center mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-            Three Game-Changing Benefits That <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Transform Careers</span>
+            How We <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Transform Careers</span>
           </h2>
         </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, PlayCircle, Users } from 'lucide-react';
+import { ArrowRight, Play, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
@@ -35,7 +35,7 @@ const Hero = () => {
             
             <button className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors group">
               <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white transition-colors shadow-lg">
-                <PlayCircle className="w-5 h-5" />
+                <Play className="w-5 h-5" />
               </div>
               <span className="font-medium">Watch 2-Min Demo</span>
             </button>
