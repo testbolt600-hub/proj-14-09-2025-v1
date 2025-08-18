@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Zap, Crown, Building } from 'lucide-react';
+import { Check, Sparkles, Star, Building2 } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const Pricing = () => {
@@ -11,7 +11,7 @@ const Pricing = () => {
       price: "$0",
       period: "forever",
       description: "Perfect for getting started",
-      icon: <Zap className="w-6 h-6" />,
+      icon: <Sparkles className="w-6 h-6" />,
       features: [
         "5 AI-generated posts per month",
         "3 carousel templates",
@@ -26,7 +26,7 @@ const Pricing = () => {
       price: "$29",
       period: "per month",
       description: "For serious content creators",
-      icon: <Crown className="w-6 h-6" />,
+      icon: <Star className="w-6 h-6" />,
       features: [
         "Unlimited AI-generated content",
         "50+ professional templates",
@@ -44,7 +44,7 @@ const Pricing = () => {
       price: "$99",
       period: "per month",
       description: "For teams and agencies",
-      icon: <Building className="w-6 h-6" />,
+      icon: <Building2 className="w-6 h-6" />,
       features: [
         "Everything in Pro",
         "Team collaboration tools",
@@ -73,10 +73,10 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl ${
+              className={`group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:border-indigo-400/50 hover:shadow-indigo-500/20 ${
                 plan.popular 
-                  ? 'border-indigo-400 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30' 
-                  : 'border-slate-200/50 hover:border-indigo-300/50 hover:shadow-indigo-500/10'
+                  ? 'border-indigo-400 shadow-lg shadow-indigo-500/20' 
+                  : 'border-slate-200/50'
               } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 0.2}s` }}
             >

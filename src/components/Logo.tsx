@@ -21,26 +21,31 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md', showText = tru
 
   return (
     <div className={`flex items-center space-x-2 ${className}`}>
-      <div className={`${sizeClasses[size]} bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg`}>
+      <div className={`${sizeClasses[size]} bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg relative overflow-hidden`}>
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+        
+        {/* Main icon - Career ladder/growth symbol */}
         <svg 
           viewBox="0 0 24 24" 
           fill="none" 
-          className="w-1/2 h-1/2 text-white"
+          className="w-3/5 h-3/5 text-white relative z-10"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* Career ladder steps */}
           <path 
-            d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" 
+            d="M6 20h3v-2H6v2zm0-4h3v-2H6v2zm0-4h3v-2H6v2zm0-4h3V6H6v2z" 
             fill="currentColor"
           />
           <path 
-            d="M19 15L19.5 17.5L22 18L19.5 18.5L19 21L18.5 18.5L16 18L18.5 17.5L19 15Z" 
-            fill="currentColor" 
-            opacity="0.7"
+            d="M12 20h3v-2h-3v2zm0-4h3v-2h-3v2zm0-4h3v-2h-3v2zm0-4h3V6h-3v2z" 
+            fill="currentColor"
           />
+          {/* Upward arrow indicating growth */}
           <path 
-            d="M5 6L5.5 8L7 8.5L5.5 9L5 11L4.5 9L3 8.5L4.5 8L5 6Z" 
-            fill="currentColor" 
-            opacity="0.7"
+            d="M18 12l-1.41-1.41L15 12.17V4h-2v8.17l-1.59-1.58L10 12l4 4 4-4z" 
+            fill="currentColor"
+            transform="rotate(180 14 8)"
           />
         </svg>
       </div>

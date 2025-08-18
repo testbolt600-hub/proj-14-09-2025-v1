@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, TrendingUp, Users, DollarSign } from 'lucide-react';
+import { Star, BarChart3, UserCheck, DollarSign } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 const SocialProof = () => {
@@ -37,19 +37,19 @@ const SocialProof = () => {
 
   const stats = [
     {
-      icon: Users,
+      icon: UserCheck,
       number: "87%",
       label: "Get more interview callbacks",
       color: "text-blue-600"
     },
     {
-      icon: TrendingUp,
+      icon: BarChart3,
       number: "3x",
       label: "Average LinkedIn engagement increase",
       color: "text-green-600"
     },
     {
-      icon: Users,
+      icon: UserCheck,
       number: "10,000+",
       label: "Professionals transformed",
       color: "text-purple-600"
@@ -72,7 +72,7 @@ const SocialProof = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
@@ -81,7 +81,7 @@ const SocialProof = () => {
                 className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300 h-48 flex flex-col items-center justify-center text-center">
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 h-48 flex flex-col items-center justify-center text-center">
                   <Icon className={`w-8 h-8 ${stat.color} mb-4`} />
                   <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.number}</div>
                   <div className="text-slate-600 text-sm font-medium leading-tight px-2">{stat.label}</div>
