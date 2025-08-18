@@ -127,7 +127,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
     <div className="p-6 lg:p-8 max-w-4xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25">
           <PenTool className="w-6 h-6 text-white" />
         </div>
         <div>
@@ -140,22 +140,22 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
         {/* Main Editor */}
         <div className="lg:col-span-2 space-y-6">
           {/* AI Generation */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-xl hover:border-violet-400/30 transition-all duration-300">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-xl hover:border-cyan-400/30 transition-all duration-300">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-violet-400" />
+              <Sparkles className="w-5 h-5 text-cyan-400" />
               AI Content Generation
             </h3>
             
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Tone
                   </label>
                   <select
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-800 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
                   >
                     {tones.map((t) => (
                       <option key={t.value} value={t.value}>{t.label}</option>
@@ -164,13 +164,13 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
                     Industry
                   </label>
                   <select
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
-                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-800 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
                   >
                     {industries.map((i) => (
                       <option key={i.value} value={i.value}>{i.label}</option>
@@ -180,7 +180,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-medium text-slate-300 mb-2">
                   Topic or Idea
                 </label>
                 <input
@@ -188,14 +188,14 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="e.g., importance of networking in tech industry"
-                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-800 placeholder-slate-400 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none"
+                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
                 />
               </div>
 
               <button
                 onClick={handleGenerate}
                 disabled={!prompt.trim() || isGenerating}
-                className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isGenerating ? (
                   <>
@@ -213,10 +213,10 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
           </div>
 
           {/* Content Editor */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-lg">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-slate-800">Content Editor</h3>
-              <div className="text-sm text-slate-500">
+              <h3 className="text-lg font-semibold text-white">Content Editor</h3>
+              <div className="text-sm text-slate-400">
                 {characterCount}/{characterLimit}
               </div>
             </div>
@@ -225,7 +225,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your LinkedIn post here or generate content with AI..."
-              className="w-full h-64 px-4 py-3 bg-white border border-slate-300 rounded-lg text-slate-800 placeholder-slate-400 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none resize-none"
+              className="w-full h-64 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none resize-none"
               maxLength={characterLimit}
             />
           </div>
@@ -235,7 +235,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleAnalyze}
               disabled={!content.trim() || isAnalyzing}
-              className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/20"
             >
               {isAnalyzing ? (
                 <>
@@ -253,7 +253,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handlePublish}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/20"
             >
               <Send className="w-4 h-4" />
               Publish Now
@@ -262,7 +262,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleSchedule}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
             >
               <CalendarIcon className="w-4 h-4" />
               Schedule
@@ -271,7 +271,7 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
             <button
               onClick={handleSaveDraft}
               disabled={!content.trim()}
-              className="flex items-center gap-2 px-4 py-2 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-slate-500/20"
             >
               <Save className="w-4 h-4" />
               Save Draft
@@ -283,9 +283,9 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
         <div className="space-y-6">
           {/* Score Display */}
           {score !== null && (
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-lg">
-              <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-green-500" />
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-cyan-400" />
                 Content Score
               </h3>
               
@@ -295,41 +295,41 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
                 }`}>
                   {score}
                 </div>
-                <div className="text-slate-500">out of 100</div>
+                <div className="text-slate-400">out of 100</div>
               </div>
 
               {analysis && (
                 <div className="space-y-4">
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Clarity</span>
-                      <span className="text-slate-800">{analysis.clarity}/10</span>
+                      <span className="text-slate-300">Clarity</span>
+                      <span className="text-white">{analysis.clarity}/10</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Grammar</span>
-                      <span className="text-slate-800">{analysis.grammar}/10</span>
+                      <span className="text-slate-300">Grammar</span>
+                      <span className="text-white">{analysis.grammar}/10</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Hook Strength</span>
-                      <span className="text-slate-800">{analysis.hook}/10</span>
+                      <span className="text-slate-300">Hook Strength</span>
+                      <span className="text-white">{analysis.hook}/10</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Call-to-Action</span>
-                      <span className="text-slate-800">{analysis.cta}/10</span>
+                      <span className="text-slate-300">Call-to-Action</span>
+                      <span className="text-white">{analysis.cta}/10</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Formatting</span>
-                      <span className="text-slate-800">{analysis.formatting}</span>
+                      <span className="text-slate-300">Formatting</span>
+                      <span className="text-white">{analysis.formatting}</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-200">
-                    <h4 className="text-sm font-semibold text-slate-800 mb-3">Suggestions</h4>
+                  <div className="pt-4 border-t border-slate-600">
+                    <h4 className="text-sm font-semibold text-white mb-3">Suggestions</h4>
                     <div className="space-y-2">
                       {analysis.suggestions.map((suggestion: string, index: number) => (
                         <div key={index} className="flex items-start gap-2">
-                          <AlertCircle className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-slate-600">{suggestion}</span>
+                          <AlertCircle className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-slate-300">{suggestion}</span>
                         </div>
                       ))}
                     </div>
@@ -340,38 +340,38 @@ What's your experience with ${prompt.toLowerCase()}? I'd love to hear your thoug
           )}
 
           {/* Tips */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-lg">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">Writing Tips</h3>
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:border-cyan-400/30 transition-all duration-300">
+            <h3 className="text-lg font-semibold text-white mb-4">Writing Tips</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-slate-800">Start with a hook</p>
-                  <p className="text-xs text-slate-500 mt-1">Begin with a question, statistic, or bold statement</p>
+                  <p className="text-sm font-medium text-white">Start with a hook</p>
+                  <p className="text-xs text-slate-400 mt-1">Begin with a question, statistic, or bold statement</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-slate-800">Use emojis sparingly</p>
-                  <p className="text-xs text-slate-500 mt-1">1-3 emojis can enhance readability</p>
+                  <p className="text-sm font-medium text-white">Use emojis sparingly</p>
+                  <p className="text-xs text-slate-400 mt-1">1-3 emojis can enhance readability</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-slate-800">Include a call-to-action</p>
-                  <p className="text-xs text-slate-500 mt-1">Ask for engagement or opinions</p>
+                  <p className="text-sm font-medium text-white">Include a call-to-action</p>
+                  <p className="text-xs text-slate-400 mt-1">Ask for engagement or opinions</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-slate-800">Keep paragraphs short</p>
-                  <p className="text-xs text-slate-500 mt-1">1-3 sentences per paragraph for mobile</p>
+                  <p className="text-sm font-medium text-white">Keep paragraphs short</p>
+                  <p className="text-xs text-slate-400 mt-1">1-3 sentences per paragraph for mobile</p>
                 </div>
               </div>
             </div>

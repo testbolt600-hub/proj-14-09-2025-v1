@@ -12,7 +12,8 @@ import {
   MessageCircle, 
   Users,
   Menu,
-  X
+  X,
+  Home
 } from 'lucide-react';
 import { signOut } from '../lib/supabase';
 import Logo from '../components/Logo';
@@ -44,6 +45,17 @@ const Dashboard = () => {
   };
 
   const menuItems = [
+    {
+      category: 'Overview',
+      items: [
+        {
+          name: 'Dashboard',
+          path: '/dashboard',
+          icon: Home,
+          description: 'Overview of your career growth and recent activity'
+        }
+      ]
+    },
     {
       category: 'Create & Generate',
       items: [
@@ -169,7 +181,7 @@ const Dashboard = () => {
                         }}
                         className={`w-full flex items-start space-x-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                           isActive
-                            ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-500/25'
+                            ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
                             : 'text-slate-300 hover:text-white hover:bg-slate-800'
                         }`}
                       >
