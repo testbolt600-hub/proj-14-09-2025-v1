@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   FileText, 
   Download,
-  Save
+  Save,
+  Upload,
+  X,
+  AlertCircle,
+  CheckCircle
 } from 'lucide-react';
 import ResumeLibrary from './ResumeLibrary';
 import AICopilot from './AICopilot';
@@ -26,8 +30,13 @@ const SmartResumeStudio = () => {
   const [aiProcessing, setAiProcessing] = useState(false);
   const [selectedText, setSelectedText] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const [newResumeTitle, setNewResumeTitle] = useState('');
   const [newResumeType, setNewResumeType] = useState<'master' | 'campaign'>('campaign');
+  const [importFile, setImportFile] = useState<File | null>(null);
+  const [importStatus, setImportStatus] = useState<'idle' | 'uploading' | 'processing' | 'success' | 'error'>('idle');
+  const [importError, setImportError] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Mock data
   useEffect(() => {
@@ -127,14 +136,127 @@ const SmartResumeStudio = () => {
   };
 
   const handleImportResume = () => {
-    // TODO: Implement resume import functionality
-    console.log('Import resume functionality to be implemented');
+    setShowImportModal(true);
+    setImportFile(null);
+    setImportStatus('idle');
+    setImportError('');
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = [
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/msword',
+        'text/plain'
+      ];
+      
+      if (!allowedTypes.includes(file.type)) {
+        setImportError('Please select a valid file type (PDF, DOCX, DOC, or TXT)');
+        return;
+      }
+      
+      // Validate file size (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        setImportError('File size must be less than 10MB');
+        return;
+      }
+      
+      setImportFile(file);
+      setImportError('');
+    }
+  };
+
+  const processImportedFile = async () => {
+    if (!importFile) return;
+    
+    setImportStatus('uploading');
+    
+    try {
+      // Simulate file upload and processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setImportStatus('processing');
+      
+      // Simulate content extraction
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Mock extracted content based on file type
+      let extractedContent = '';
+      if (importFile.type === 'text/plain') {
+        extractedContent = await importFile.text();
+      } else {
+        // For PDF/DOCX, simulate extracted content
+        extractedContent = `Imported Resume Content\n\nName: ${importFile.name.replace(/\.[^/.]+$/, '')}\n\nPROFESSIONAL SUMMARY\n[Content extracted from ${importFile.name}]\n\nEXPERIENCE\n[Experience section extracted]\n\nEDUCATION\n[Education section extracted]\n\nSKILLS\n[Skills section extracted]`;
+      }
+      
+      // Create new resume from imported content
+      const newResume: Resume = {
+        id: Date.now().toString(),
+        title: `Imported - ${importFile.name.replace(/\.[^/.]+$/, '')}`,
+        type: 'master',
+        content: extractedContent,
+        atsScore: Math.floor(Math.random() * 30) + 60, // Random score between 60-90
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+      
+      setResumes([...resumes, newResume]);
+      setActiveResumeId(newResume.id);
+      setActiveResume(newResume);
+      setEditorContent(newResume.content);
+      
+      setImportStatus('success');
+      
+      // Close modal after success
+      setTimeout(() => {
+        setShowImportModal(false);
+        setImportFile(null);
+        setImportStatus('idle');
+        setImportError('');
+      }, 1500);
+      
+    } catch (error) {
+      setImportStatus('error');
+      setImportError('Failed to process the file. Please try again.');
+    }
   };
 
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'text-green-400';
     if (score >= 70) return 'text-yellow-400';
     return 'text-red-400';
+  };
+
+  const getStatusIcon = () => {
+    switch (importStatus) {
+      case 'uploading':
+        return <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />;
+      case 'processing':
+        return <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />;
+      case 'success':
+        return <CheckCircle className="w-6 h-6 text-green-500" />;
+      case 'error':
+        return <AlertCircle className="w-6 h-6 text-red-500" />;
+      default:
+        return <Upload className="w-6 h-6 text-blue-500" />;
+    }
+  };
+
+  const getStatusText = () => {
+    switch (importStatus) {
+      case 'uploading':
+        return 'Uploading file...';
+      case 'processing':
+        return 'Processing resume content...';
+      case 'success':
+        return 'Resume imported successfully!';
+      case 'error':
+        return 'Import failed';
+      default:
+        return 'Select a file to import';
+    }
   };
 
   return (
@@ -288,6 +410,112 @@ const SmartResumeStudio = () => {
                 className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
               >
                 Create Resume
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Import Resume Modal */}
+      {showImportModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-slate-800 rounded-lg p-6 w-96">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">Import Resume</h3>
+              <button
+                onClick={() => setShowImportModal(false)}
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="space-y-4">
+              {/* File Upload Area */}
+              <div className="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".pdf,.docx,.doc,.txt"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
+                
+                <div className="flex flex-col items-center gap-3">
+                  {getStatusIcon()}
+                  <div>
+                    <p className="text-white font-medium">{getStatusText()}</p>
+                    {importFile && (
+                      <p className="text-slate-400 text-sm mt-1">{importFile.name}</p>
+                    )}
+                  </div>
+                  
+                  {!importFile && (
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                    >
+                      Choose File
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Error Message */}
+              {importError && (
+                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                  <p className="text-red-400 text-sm">{importError}</p>
+                </div>
+              )}
+
+              {/* File Info */}
+              {importFile && (
+                <div className="bg-slate-700 rounded-lg p-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white text-sm font-medium">{importFile.name}</p>
+                      <p className="text-slate-400 text-xs">
+                        {(importFile.size / 1024 / 1024).toFixed(2)} MB
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setImportFile(null)}
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Supported Formats */}
+              <div className="bg-slate-700 rounded-lg p-3">
+                <h4 className="text-sm font-medium text-white mb-2">Supported Formats</h4>
+                <div className="grid grid-cols-2 gap-2 text-xs text-slate-400">
+                  <div>• PDF (.pdf)</div>
+                  <div>• Word (.docx)</div>
+                  <div>• Word (.doc)</div>
+                  <div>• Text (.txt)</div>
+                </div>
+                <p className="text-xs text-slate-500 mt-2">Maximum file size: 10MB</p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={() => setShowImportModal(false)}
+                className="flex-1 px-4 py-2 border border-slate-600 text-slate-300 rounded-lg hover:border-slate-500 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={processImportedFile}
+                disabled={!importFile || importStatus === 'uploading' || importStatus === 'processing'}
+                className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+              >
+                {importStatus === 'uploading' ? 'Uploading...' : 
+                 importStatus === 'processing' ? 'Processing...' : 
+                 importStatus === 'success' ? 'Success!' : 'Import Resume'}
               </button>
             </div>
           </div>

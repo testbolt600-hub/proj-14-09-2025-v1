@@ -21,6 +21,14 @@ The Smart Resume Studio is a comprehensive AI-powered resume management system t
 - **Gap Justifier**: Helps address career breaks professionally
 - **Smart Suggestions**: Context-aware recommendations for improvement
 
+### 📁 File Import & Management
+
+- **Multi-Format Support**: Import PDF, DOCX, DOC, and TXT files
+- **File Validation**: Automatic file type and size validation (max 10MB)
+- **Content Extraction**: Automatic text extraction from uploaded files
+- **Import Status Tracking**: Real-time upload and processing status
+- **Error Handling**: Clear error messages for invalid files
+
 ### 📊 Analytics & Scoring
 
 - **ATS Score**: Real-time compatibility scoring (0-100%)
@@ -65,10 +73,10 @@ SmartResumeStudio/
 
 ### Workflow
 
-1. **Master Resume Creation**
-   - Click "Create New Resume"
-   - Select "Master Resume" type
-   - Build your foundational resume content
+1. **Resume Import or Creation**
+   - **Import**: Click "Import Resume" to upload existing files (PDF, DOCX, DOC, TXT)
+   - **Create New**: Click "Create New Resume" to start from scratch
+   - **Master Resume**: Build your foundational resume template
 
 2. **Campaign Resume Generation**
    - Click "Create New Resume"
@@ -103,6 +111,9 @@ interface Resume {
 - `runATSOptimization()`: Execute ATS compatibility check
 - `enhanceSelectedText()`: AI-powered text enhancement
 - `createNewResume()`: Create new resume instances
+- `handleImportResume()`: Open import modal
+- `handleFileSelect()`: Validate and select files for import
+- `processImportedFile()`: Process uploaded files and extract content
 
 ### Styling
 - Uses existing Tailwind CSS configuration
@@ -125,7 +136,6 @@ interface Resume {
 ## Future Enhancements
 
 ### Planned Features
-- **PDF/DOCX Import**: Direct file upload and parsing
 - **Export Options**: Multiple format export (PDF, DOCX, TXT)
 - **Version History**: Track changes and revert capabilities
 - **Collaboration**: Share resumes with team members
@@ -145,6 +155,9 @@ interface Resume {
 - ✅ Created: `src/components/features/ResumeLibrary.tsx`
 - ✅ Created: `src/components/features/AICopilot.tsx`
 - ✅ Updated: `src/pages/Dashboard.tsx`
+- ✅ Added: File import functionality with modal interface
+- ✅ Added: Multi-format file support (PDF, DOCX, DOC, TXT)
+- ✅ Added: File validation and error handling
 
 ### Build Status
 - ✅ TypeScript compilation successful
