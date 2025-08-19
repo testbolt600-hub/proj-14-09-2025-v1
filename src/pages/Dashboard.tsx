@@ -22,7 +22,7 @@ import Logo from '../components/Logo';
 import PostGenerator from '../components/features/PostGenerator';
 import CarouselMaker from '../components/features/CarouselMaker';
 import RepurposeContent from '../components/features/RepurposeContent';
-import ResumeEnhancer from '../components/features/ResumeEnhancer';
+import SmartResumeStudio from '../components/features/SmartResumeStudio';
 import ApplicationTailor from '../components/features/ApplicationTailor';
 import CalendarPostQueue from '../components/features/CalendarPostQueue';
 import Analytics from '../components/features/Analytics';
@@ -83,10 +83,10 @@ const Dashboard = () => {
       category: 'Job Toolkit',
       items: [
         {
-          name: 'Resume Enhancer',
-          path: '/dashboard/resume-enhancer',
+          name: 'Smart Resume Studio',
+          path: '/dashboard/smart-resume-studio',
           icon: FileText,
-          description: 'Optimize your resume for ATS and recruiters'
+          description: 'AI-powered resume creation and optimization'
         },
         {
           name: 'Application Tailor',
@@ -244,7 +244,7 @@ const Dashboard = () => {
               <Route path="/post-generator" element={<PostGenerator />} />
               <Route path="/carousel-maker" element={<CarouselMaker />} />
               <Route path="/repurpose-content" element={<RepurposeContent />} />
-              <Route path="/resume-enhancer" element={<ResumeEnhancer />} />
+              <Route path="/smart-resume-studio" element={<SmartResumeStudio />} />
               <Route path="/application-tailor" element={<ApplicationTailor />} />
               <Route path="/calendar" element={<CalendarPostQueue />} />
               <Route path="/analytics" element={<Analytics />} />
