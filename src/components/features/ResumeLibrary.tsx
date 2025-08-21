@@ -23,7 +23,6 @@ const ResumeLibrary: React.FC<ResumeLibraryProps> = ({
   onSelectResume
 }) => {
   const masterResume = resumes.find(r => r.type === 'master');
-  const campaignResumes = resumes.filter(r => r.type === 'campaign');
 
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'bg-green-500';
@@ -64,36 +63,6 @@ const ResumeLibrary: React.FC<ResumeLibraryProps> = ({
         </div>
       )}
 
-      {/* Campaign Resumes */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-medium text-slate-300">Campaign Resumes</h3>
-          <span className="text-xs text-slate-500">{campaignResumes.length}</span>
-        </div>
-        
-        {campaignResumes.map((resume) => (
-          <div
-            key={resume.id}
-            className={`p-3 rounded-lg border mb-2 cursor-pointer transition-colors ${
-              activeResumeId === resume.id
-                ? 'border-blue-500 bg-blue-500/10'
-                : 'border-slate-700 hover:border-slate-600'
-            }`}
-            onClick={() => onSelectResume(resume.id)}
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <Target className="w-4 h-4 text-blue-400" />
-              <span className="font-medium text-white text-sm truncate">{resume.title}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">
-                {new Date(resume.updatedAt).toLocaleDateString()}
-              </span>
-              <div className={`w-2 h-2 rounded-full ${getScoreColor(resume.atsScore)}`}></div>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
