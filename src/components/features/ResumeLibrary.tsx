@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Target, Plus, Upload } from 'lucide-react';
+import { Star, Target } from 'lucide-react';
 
 interface Resume {
   id: string;
@@ -15,16 +15,12 @@ interface ResumeLibraryProps {
   resumes: Resume[];
   activeResumeId: string | null;
   onSelectResume: (id: string) => void;
-  onCreateNew: () => void;
-  onImportResume: () => void;
 }
 
 const ResumeLibrary: React.FC<ResumeLibraryProps> = ({
   resumes,
   activeResumeId,
-  onSelectResume,
-  onCreateNew,
-  onImportResume
+  onSelectResume
 }) => {
   const masterResume = resumes.find(r => r.type === 'master');
   const campaignResumes = resumes.filter(r => r.type === 'campaign');
@@ -97,24 +93,6 @@ const ResumeLibrary: React.FC<ResumeLibraryProps> = ({
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Action Buttons */}
-      <div className="space-y-2 pt-4 border-t border-slate-800">
-        <button 
-          onClick={onCreateNew}
-          className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
-        >
-          <Plus className="w-4 h-4" />
-          Create New Resume
-        </button>
-        <button 
-          onClick={onImportResume}
-          className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-slate-700 text-slate-300 rounded-lg hover:border-slate-600 hover:text-white transition-colors"
-        >
-          <Upload className="w-4 h-4" />
-          Import Resume
-        </button>
       </div>
     </div>
   );

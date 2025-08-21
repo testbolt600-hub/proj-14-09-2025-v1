@@ -52,7 +52,6 @@ const Dashboard = () => {
           name: 'Dashboard',
           path: '/dashboard',
           icon: Home,
-          description: 'Overview of your career growth and recent activity'
         }
       ]
     },
@@ -63,19 +62,16 @@ const Dashboard = () => {
           name: 'Post Generator',
           path: '/dashboard/post-generator',
           icon: PenTool,
-          description: 'Create optimized LinkedIn posts with AI assistance'
         },
         {
           name: 'Carousel Maker',
           path: '/dashboard/carousel-maker',
           icon: Image,
-          description: 'Design professional multi-slide carousels'
         },
         {
           name: 'Repurpose Content',
           path: '/dashboard/repurpose-content',
           icon: RefreshCw,
-          description: 'Transform existing content into LinkedIn posts'
         }
       ]
     },
@@ -86,13 +82,11 @@ const Dashboard = () => {
           name: 'Smart Resume Studio',
           path: '/dashboard/smart-resume-studio',
           icon: FileText,
-          description: 'AI-powered resume creation and optimization'
         },
         {
           name: 'Application Tailor',
           path: '/dashboard/application-tailor',
           icon: Target,
-          description: 'Customize applications for specific job postings'
         }
       ]
     },
@@ -103,7 +97,6 @@ const Dashboard = () => {
           name: 'Calendar & Post Queue',
           path: '/dashboard/calendar',
           icon: Calendar,
-          description: 'Schedule and manage your content calendar'
         }
       ]
     },
@@ -114,13 +107,11 @@ const Dashboard = () => {
           name: 'Analytics',
           path: '/dashboard/analytics',
           icon: TrendingUp,
-          description: 'Track performance and optimize strategy'
         },
         {
           name: 'Comment Helper',
           path: '/dashboard/comment-helper',
           icon: MessageCircle,
-          description: 'Generate strategic comments for engagement'
         }
       ]
     },
@@ -131,7 +122,6 @@ const Dashboard = () => {
           name: 'Team Management & Settings',
           path: '/dashboard/team-management',
           icon: Users,
-          description: 'Manage team access and account settings'
         }
       ]
     }
@@ -147,7 +137,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-slate-950 flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-80 bg-slate-900 border-r border-slate-800 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-800 shadow-xl transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between p-6 border-b border-slate-800">
@@ -189,9 +179,6 @@ const Dashboard = () => {
                         <div>
                           <div className={`font-medium ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                             {item.name}
-                          </div>
-                          <div className="text-xs text-slate-500 mt-1 leading-relaxed">
-                            {item.description}
                           </div>
                         </div>
                       </button>
