@@ -24,6 +24,7 @@ import CarouselMaker from '../components/features/CarouselMaker';
 import RepurposeContent from '../components/features/RepurposeContent';
 import SmartResumeStudio from '../components/features/SmartResumeStudio';
 import ApplicationTailor from '../components/features/ApplicationTailor';
+import CoverLetterGenerator from '../components/features/CoverLetterGenerator';
 import CalendarPostQueue from '../components/features/CalendarPostQueue';
 import Analytics from '../components/features/Analytics';
 import CommentHelper from '../components/features/CommentHelper';
@@ -87,6 +88,11 @@ const Dashboard = () => {
           name: 'Application Tailor',
           path: '/dashboard/application-tailor',
           icon: Target,
+        },
+        {
+          name: 'Cover Letter Generator',
+          path: '/dashboard/cover-letter-generator',
+          icon: FileText,
         }
       ]
     },
@@ -233,6 +239,7 @@ const Dashboard = () => {
               <Route path="/repurpose-content" element={<RepurposeContent />} />
               <Route path="/smart-resume-studio" element={<SmartResumeStudio />} />
               <Route path="/application-tailor" element={<ApplicationTailor />} />
+              <Route path="/cover-letter-generator" element={<CoverLetterGenerator />} />
               <Route path="/calendar" element={<CalendarPostQueue />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/comment-helper" element={<CommentHelper />} />
