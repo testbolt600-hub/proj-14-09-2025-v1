@@ -468,17 +468,8 @@ SKILLS
 
   return (
     <div className="flex h-screen bg-slate-950">
-      {/* Left Panel - Resume Library */}
-      <div className="w-64 bg-slate-900 border-r border-slate-800 flex-shrink-0">
-        <ResumeLibrary
-          resumes={resumes}
-          activeResumeId={activeResumeId}
-          onSelectResume={handleResumeSelect}
-        />
-      </div>
-
       {/* Center Panel - Controls */}
-      <div className="w-80 bg-slate-900 border-r border-slate-800 flex-shrink-0">
+      <div className="w-80 bg-slate-900 border-r border-slate-800 flex-shrink-0 border-l border-slate-800">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="p-6 border-b border-slate-800">
