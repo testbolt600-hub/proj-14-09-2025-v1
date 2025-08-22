@@ -438,20 +438,6 @@ const ResumeManager = () => {
       </div>
     </div>
   );
-
-  function handleView(item: SavedItem) {
-    alert(`Viewing: ${item.title}`);
-  }
-
-  function handleEdit(item: SavedItem) {
-    alert(`Editing: ${item.title}`);
-  }
-
-  function handleDelete(item: SavedItem) {
-    if (confirm(`Are you sure you want to delete "${item.title}"?`)) {
-      alert(`Deleted: ${item.title}`);
-    }
-  }
 };
 
 export default ResumeManager;
