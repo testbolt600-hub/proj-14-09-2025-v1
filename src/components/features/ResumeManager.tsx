@@ -18,7 +18,7 @@ import {
 interface SavedItem {
   id: string;
   title: string;
-  type: 'resume' | 'cover-letter' | 'tailored-resume';
+  type: 'resume' | 'cover-letter' | 'tailored-resume' | 'application-tailor';
   content: string;
   createdAt: string;
   updatedAt: string;
@@ -29,7 +29,7 @@ interface SavedItem {
 }
 
 const ResumeManager = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'resumes' | 'cover-letters' | 'tailored'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'resumes' | 'cover-letters' | 'tailored' | 'drafts'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'date' | 'title' | 'type'>('date');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'completed'>('all');
@@ -91,6 +91,29 @@ const ResumeManager = () => {
       jobTitle: 'Data Scientist',
       company: 'Netflix',
       status: 'draft'
+    },
+    {
+      id: '6',
+      title: 'Tailored Resume - Amazon SDE',
+      type: 'application-tailor',
+      content: 'Application Tailor generated resume...',
+      createdAt: '2024-01-21',
+      updatedAt: '2024-01-21',
+      jobTitle: 'Software Development Engineer',
+      company: 'Amazon',
+      status: 'completed',
+      atsScore: 94
+    },
+    {
+      id: '7',
+      title: 'Marketing Manager Cover Letter - Adobe',
+      type: 'cover-letter',
+      content: 'Cover letter generated content...',
+      createdAt: '2024-01-20',
+      updatedAt: '2024-01-20',
+      jobTitle: 'Marketing Manager',
+      company: 'Adobe',
+      status: 'completed'
     }
   ];
 
@@ -99,6 +122,8 @@ const ResumeManager = () => {
       case 'resume':
         return <Star className="w-5 h-5 text-yellow-400" />;
       case 'tailored-resume':
+        return <Target className="w-5 h-5 text-orange-400" />;
+      case 'application-tailor':
         return <Target className="w-5 h-5 text-orange-400" />;
       case 'cover-letter':
         return <FileText className="w-5 h-5 text-blue-400" />;
@@ -113,6 +138,8 @@ const ResumeManager = () => {
         return 'Resume';
       case 'tailored-resume':
         return 'Tailored Resume';
+      case 'application-tailor':
+        return 'Application Tailor';
       case 'cover-letter':
         return 'Cover Letter';
       default:
@@ -130,7 +157,7 @@ const ResumeManager = () => {
     const matchesTab = activeTab === 'all' || 
                      (activeTab === 'resumes' && item.type === 'resume') ||
                      (activeTab === 'cover-letters' && item.type === 'cover-letter') ||
-                     (activeTab === 'tailored' && item.type === 'tailored-resume');
+                     (activeTab === 'tailored' && (item.type === 'tailored-resume' || item.type === 'application-tailor'));
     
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          item.jobTitle?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -182,12 +209,12 @@ const ResumeManager = () => {
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
           <FolderOpen className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-gray-50">Resume Manager</h1>
-          <p className="text-gray-400 mt-1">Manage your saved resumes, cover letters, and work history</p>
+          <h1 className="text-3xl font-bold text-gray-50">Work History Manager</h1>
+          <p className="text-gray-400 mt-1">Manage all your saved resumes, cover letters, and tailored documents</p>
         </div>
       </div>
 
@@ -218,7 +245,7 @@ const ResumeManager = () => {
                 activeTab === 'tailored' ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:text-white'
               }`}
             >
-              Tailored
+              Tailored Resumes
             </button>
             <button
               onClick={() => setActiveTab('cover-letters')}
@@ -383,7 +410,7 @@ const ResumeManager = () => {
           <div className="flex items-center gap-3 mb-2">
             <Target className="w-6 h-6 text-orange-400" />
             <span className="text-lg font-semibold text-white">
-              {savedItems.filter(item => item.type === 'tailored-resume').length}
+              {savedItems.filter(item => item.type === 'tailored-resume' || item.type === 'application-tailor').length}
             </span>
           </div>
           <p className="text-gray-400 text-sm">Tailored Resumes</p>

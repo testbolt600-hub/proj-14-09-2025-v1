@@ -85,21 +85,25 @@ const Dashboard = () => {
           name: 'Smart Resume Studio',
           path: '/dashboard/smart-resume-studio',
           icon: FileText,
+          description: 'AI-powered resume creation and optimization'
         },
-        {
-          name: 'Resume Manager',
-          path: '/dashboard/resume-manager',
-          icon: FolderOpen,
-        }
         {
           name: 'Application Tailor',
           path: '/dashboard/application-tailor',
           icon: Target,
+          description: 'Create job-specific tailored resumes'
+        },
+        {
+          name: 'Work History Manager',
+          path: '/dashboard/work-history-manager',
+          icon: FolderOpen,
+          description: 'Manage saved resumes and documents'
         },
         {
           name: 'Cover Letter Generator',
           path: '/dashboard/cover-letter-generator',
           icon: FileText,
+          description: 'AI-powered personalized cover letters'
         }
       ]
     },
@@ -247,7 +251,7 @@ const Dashboard = () => {
               <Route path="/smart-resume-studio" element={<SmartResumeStudio />} />
               <Route path="/application-tailor" element={<ApplicationTailor />} />
               <Route path="/cover-letter-generator" element={<CoverLetterGenerator />} />
-              <Route path="/resume-manager" element={<ResumeManager />} />
+              <Route path="/work-history-manager" element={<ResumeManager />} />
               <Route path="/calendar" element={<CalendarPostQueue />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/comment-helper" element={<CommentHelper />} />
