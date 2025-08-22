@@ -11,6 +11,7 @@ import {
   TrendingUp, 
   MessageCircle, 
   Users,
+  FolderOpen,
   Menu,
   X,
   Home
@@ -25,6 +26,7 @@ import RepurposeContent from '../components/features/RepurposeContent';
 import SmartResumeStudio from '../components/features/SmartResumeStudio';
 import ApplicationTailor from '../components/features/ApplicationTailor';
 import CoverLetterGenerator from '../components/features/CoverLetterGenerator';
+import ResumeManager from '../components/features/ResumeManager';
 import CalendarPostQueue from '../components/features/CalendarPostQueue';
 import Analytics from '../components/features/Analytics';
 import CommentHelper from '../components/features/CommentHelper';
@@ -84,6 +86,11 @@ const Dashboard = () => {
           path: '/dashboard/smart-resume-studio',
           icon: FileText,
         },
+        {
+          name: 'Resume Manager',
+          path: '/dashboard/resume-manager',
+          icon: FolderOpen,
+        }
         {
           name: 'Application Tailor',
           path: '/dashboard/application-tailor',
@@ -240,6 +247,7 @@ const Dashboard = () => {
               <Route path="/smart-resume-studio" element={<SmartResumeStudio />} />
               <Route path="/application-tailor" element={<ApplicationTailor />} />
               <Route path="/cover-letter-generator" element={<CoverLetterGenerator />} />
+              <Route path="/resume-manager" element={<ResumeManager />} />
               <Route path="/calendar" element={<CalendarPostQueue />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/comment-helper" element={<CommentHelper />} />
