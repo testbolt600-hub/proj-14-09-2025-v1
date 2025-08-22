@@ -35,9 +35,6 @@ import DashboardHome from '../components/features/DashboardHome';
 import JobFinder from '../components/features/JobFinder';
 import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
-import ApplicationTailor from '../components/features/ApplicationTailor';
-import CoverLetterGenerator from '../components/features/CoverLetterGenerator';
-import ResumeManager from '../components/features/ResumeManager';
 
 const Dashboard = () => {
   const navigate = useNavigate();
