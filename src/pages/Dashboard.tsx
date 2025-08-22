@@ -32,6 +32,12 @@ import Analytics from '../components/features/Analytics';
 import CommentHelper from '../components/features/CommentHelper';
 import TeamManagement from '../components/features/TeamManagement';
 import DashboardHome from '../components/features/DashboardHome';
+import JobFinder from '../components/features/JobFinder';
+import JobTracker from '../components/features/JobTracker';
+import InterviewPrepKit from '../components/features/InterviewPrepKit';
+import ApplicationTailor from '../components/features/ApplicationTailor';
+import CoverLetterGenerator from '../components/features/CoverLetterGenerator';
+import ResumeManager from '../components/features/ResumeManager';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -79,31 +85,31 @@ const Dashboard = () => {
       ]
     },
     {
-      category: 'Job Toolkit',
+      category: 'Career Hub',
       items: [
+        {
+          name: 'Job Finder',
+          path: '/dashboard/job-finder',
+          icon: Target,
+          description: 'AI-powered job search and scoring'
+        },
+        {
+          name: 'Job Tracker',
+          path: '/dashboard/job-tracker',
+          icon: FolderOpen,
+          description: 'Kanban board for application pipeline'
+        },
+        {
+          name: 'Interview Prep Kit',
+          path: '/dashboard/interview-prep',
+          icon: Users,
+          description: 'AI-powered interview preparation'
+        },
         {
           name: 'Smart Resume Studio',
           path: '/dashboard/smart-resume-studio',
           icon: FileText,
           description: 'AI-powered resume creation and optimization'
-        },
-        {
-          name: 'Application Tailor',
-          path: '/dashboard/application-tailor',
-          icon: Target,
-          description: 'Create job-specific tailored resumes'
-        },
-        {
-          name: 'Work History Manager',
-          path: '/dashboard/work-history-manager',
-          icon: FolderOpen,
-          description: 'Manage saved resumes and documents'
-        },
-        {
-          name: 'Cover Letter Generator',
-          path: '/dashboard/cover-letter-generator',
-          icon: FileText,
-          description: 'AI-powered personalized cover letters'
         }
       ]
     },
@@ -248,6 +254,9 @@ const Dashboard = () => {
               <Route path="/post-generator" element={<PostGenerator />} />
               <Route path="/carousel-maker" element={<CarouselMaker />} />
               <Route path="/repurpose-content" element={<RepurposeContent />} />
+              <Route path="/job-finder" element={<JobFinder />} />
+              <Route path="/job-tracker" element={<JobTracker />} />
+              <Route path="/interview-prep" element={<InterviewPrepKit />} />
               <Route path="/smart-resume-studio" element={<SmartResumeStudio />} />
               <Route path="/application-tailor" element={<ApplicationTailor />} />
               <Route path="/cover-letter-generator" element={<CoverLetterGenerator />} />
