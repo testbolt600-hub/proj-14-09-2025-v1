@@ -85,6 +85,24 @@ const Dashboard = () => {
       category: 'Career Hub',
       items: [
         {
+          name: 'Smart Resume Studio',
+          path: '/dashboard/smart-resume-studio',
+          icon: FileText,
+          description: 'AI-powered resume creation and optimization'
+        },
+        {
+          name: 'Application Tailor',
+          path: '/dashboard/application-tailor',
+          icon: Target,
+          description: 'Tailor resumes for specific job applications'
+        },
+        {
+          name: 'Cover Letter Generator',
+          path: '/dashboard/cover-letter-generator',
+          icon: FileText,
+          description: 'AI-powered personalized cover letters'
+        },
+        {
           name: 'Job Finder',
           path: '/dashboard/job-finder',
           icon: Target,
@@ -101,12 +119,6 @@ const Dashboard = () => {
           path: '/dashboard/interview-prep',
           icon: Users,
           description: 'AI-powered interview preparation'
-        },
-        {
-          name: 'Smart Resume Studio',
-          path: '/dashboard/smart-resume-studio',
-          icon: FileText,
-          description: 'AI-powered resume creation and optimization'
         }
       ]
     },
