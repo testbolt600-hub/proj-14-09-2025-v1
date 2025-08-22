@@ -16,7 +16,8 @@ import {
   X,
   Eye,
   Edit,
-  Trash2
+  Trash2,
+  Target
 } from 'lucide-react';
 
 interface JobCard {
