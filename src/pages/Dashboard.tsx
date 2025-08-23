@@ -119,6 +119,12 @@ const Dashboard = () => {
           path: '/dashboard/interview-prep',
           icon: Users,
           description: 'AI-powered interview preparation'
+        },
+        {
+          name: 'Work History Manager',
+          path: '/dashboard/work-history-manager',
+          icon: FolderOpen,
+          description: 'Manage saved resumes, cover letters, and documents'
         }
       ]
     },
