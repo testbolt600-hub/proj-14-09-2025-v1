@@ -32,6 +32,7 @@ import Analytics from '../components/features/Analytics';
 import CommentHelper from '../components/features/CommentHelper';
 import TeamManagement from '../components/features/TeamManagement';
 import DashboardHome from '../components/features/DashboardHome';
+import BrandAudit from '../components/features/BrandAudit';
 import JobFinder from '../components/features/JobFinder';
 import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
@@ -78,6 +79,12 @@ const Dashboard = () => {
           name: 'Repurpose Content',
           path: '/dashboard/repurpose-content',
           icon: RefreshCw,
+        },
+        {
+          name: 'AI-Powered Personal Brand Audit',
+          path: '/dashboard/brand-audit',
+          icon: TrendingUp,
+          description: 'Comprehensive analysis of your digital brand presence'
         }
       ]
     },
@@ -269,6 +276,7 @@ const Dashboard = () => {
               <Route path="/post-generator" element={<PostGenerator />} />
               <Route path="/carousel-maker" element={<CarouselMaker />} />
               <Route path="/repurpose-content" element={<RepurposeContent />} />
+              <Route path="/brand-audit" element={<BrandAudit />} />
               <Route path="/job-finder" element={<JobFinder />} />
               <Route path="/job-tracker" element={<JobTracker />} />
               <Route path="/interview-prep" element={<InterviewPrepKit />} />
