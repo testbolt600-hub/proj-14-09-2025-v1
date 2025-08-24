@@ -14,7 +14,8 @@ import {
   FolderOpen,
   Menu,
   X,
-  Home
+  Home,
+  Brain
 } from 'lucide-react';
 import { signOut } from '../lib/supabase';
 import Logo from '../components/Logo';
@@ -36,6 +37,7 @@ import BrandAudit from '../components/features/BrandAudit';
 import JobFinder from '../components/features/JobFinder';
 import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
+import ContentEngine from '../components/features/ContentEngine';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -85,6 +87,12 @@ const Dashboard = () => {
           path: '/dashboard/brand-audit',
           icon: TrendingUp,
           description: 'Comprehensive analysis of your digital brand presence'
+        },
+        {
+          name: 'Content Engine for Thought Leadership',
+          path: '/dashboard/content-engine',
+          icon: Brain,
+          description: 'AI-powered thought leadership content generation'
         }
       ]
     },
@@ -277,6 +285,7 @@ const Dashboard = () => {
               <Route path="/carousel-maker" element={<CarouselMaker />} />
               <Route path="/repurpose-content" element={<RepurposeContent />} />
               <Route path="/brand-audit" element={<BrandAudit />} />
+              <Route path="/content-engine" element={<ContentEngine />} />
               <Route path="/job-finder" element={<JobFinder />} />
               <Route path="/job-tracker" element={<JobTracker />} />
               <Route path="/interview-prep" element={<InterviewPrepKit />} />
