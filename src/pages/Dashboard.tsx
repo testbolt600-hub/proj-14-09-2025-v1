@@ -40,6 +40,7 @@ import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
 import ContentEngine from '../components/features/ContentEngine';
 import CareerPortfolio from '../components/features/CareerPortfolio';
+import AIMentor from '../components/features/AIMentor';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -101,6 +102,12 @@ const Dashboard = () => {
           path: '/dashboard/career-portfolio',
           icon: Globe,
           description: 'Create professional portfolio websites with AI'
+        },
+        {
+          name: 'AI Mentor for Brand Growth',
+          path: '/dashboard/ai-mentor',
+          icon: Brain,
+          description: 'Personal AI coach for career and brand development'
         }
       ]
     },
@@ -295,6 +302,7 @@ const Dashboard = () => {
               <Route path="/brand-audit" element={<BrandAudit />} />
               <Route path="/content-engine" element={<ContentEngine />} />
               <Route path="/career-portfolio" element={<CareerPortfolio />} />
+              <Route path="/ai-mentor" element={<AIMentor />} />
               <Route path="/job-finder" element={<JobFinder />} />
               <Route path="/job-tracker" element={<JobTracker />} />
               <Route path="/interview-prep" element={<InterviewPrepKit />} />
