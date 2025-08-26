@@ -15,7 +15,8 @@ import {
   Menu,
   X,
   Home,
-  Brain
+  Brain,
+  Globe
 } from 'lucide-react';
 import { signOut } from '../lib/supabase';
 import Logo from '../components/Logo';
@@ -38,6 +39,7 @@ import JobFinder from '../components/features/JobFinder';
 import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
 import ContentEngine from '../components/features/ContentEngine';
+import CareerPortfolio from '../components/features/CareerPortfolio';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -93,6 +95,12 @@ const Dashboard = () => {
           path: '/dashboard/content-engine',
           icon: Brain,
           description: 'AI-powered thought leadership content generation'
+        },
+        {
+          name: 'AI-Generated Career Portfolio/Microsite',
+          path: '/dashboard/career-portfolio',
+          icon: Globe,
+          description: 'Create professional portfolio websites with AI'
         }
       ]
     },
@@ -286,6 +294,7 @@ const Dashboard = () => {
               <Route path="/repurpose-content" element={<RepurposeContent />} />
               <Route path="/brand-audit" element={<BrandAudit />} />
               <Route path="/content-engine" element={<ContentEngine />} />
+              <Route path="/career-portfolio" element={<CareerPortfolio />} />
               <Route path="/job-finder" element={<JobFinder />} />
               <Route path="/job-tracker" element={<JobTracker />} />
               <Route path="/interview-prep" element={<InterviewPrepKit />} />
