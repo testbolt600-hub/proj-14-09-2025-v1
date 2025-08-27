@@ -40,6 +40,7 @@ import JobTracker from '../components/features/JobTracker';
 import InterviewPrepKit from '../components/features/InterviewPrepKit';
 import ContentEngine from '../components/features/ContentEngine';
 import CareerPortfolio from '../components/features/CareerPortfolio';
+import AIMentor from '../components/features/AIMentor';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -312,6 +313,7 @@ const Dashboard = () => {
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/comment-helper" element={<CommentHelper />} />
               <Route path="/team-management" element={<TeamManagement />} />
+              <Route path="/ai-mentor" element={<AIMentor />} />
             </Routes>
           </div>
         </main>
