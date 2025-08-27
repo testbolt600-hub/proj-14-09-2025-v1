@@ -101,6 +101,12 @@ const Dashboard = () => {
           path: '/dashboard/career-portfolio',
           icon: Globe,
           description: 'Create professional portfolio websites with AI'
+        },
+        {
+          name: 'AI Mentor for Brand Growth',
+          path: '/dashboard/ai-mentor',
+          icon: Brain,
+          description: 'Personal AI coach for career and brand development'
         }
       ]
     },
