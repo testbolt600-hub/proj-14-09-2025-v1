@@ -239,6 +239,7 @@ class DataIntegrationService {
           access_token: tokens.accessToken,
           refresh_token: tokens.refreshToken,
           expires_at: tokens.expiresAt,
+          is_active: true,
           updated_at: new Date().toISOString()
         });
 
@@ -362,6 +363,37 @@ class DataIntegrationService {
   private delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  async disconnectLinkedIn = async (req: Request, res: Response) => {
+    try {
+      const userId = req.user?.id;
+
+      if (!userId) {
+        return res.status(401).json({ error: 'User not authenticated' });
+      }
+
+      // Remove LinkedIn integration
+      const { error } = await supabase
+        .from('linkedin_integrations')
+        .update({ 
+          is_active: false,
+          updated_at: new Date().toISOString()
+        })
+        .eq('user_id', userId);
+
+      if (error) {
+        throw error;
+      }
+
+      res.json({ 
+        message: 'LinkedIn disconnected successfully',
+        connected: false
+      });
+    } catch (error) {
+      console.error('Error disconnecting LinkedIn:', error);
+      res.status(500).json({ error: 'Failed to disconnect LinkedIn' });
+    }
+  };
 }
 
 export const dataIntegrationService = new DataIntegrationService();

@@ -276,12 +276,25 @@ class BackgroundJobProcessor {
 
   private async buildMentoringContext(userId: string): Promise<any> {
     try {
-      // Get user profile
-      const { data: userProfile } = await supabase
-        .from('users')
+      // Get user profile from user_profiles table
+      const { data: userProfile, error: profileError } = await supabase
+        .from('user_profiles')
         .select('*')
-        .eq('id', userId)
+        .eq('user_id', userId)
         .single();
+
+      if (profileError) {
+        console.warn(`User profile not found for user ${userId}:`, profileError);
+        // Return context with null profile - the system can still function
+        return {
+          userProfile: null,
+          currentBrandScore: null,
+          historicalData: [],
+          userGoals: [],
+          engagementHistory: [],
+          industryBenchmarks: {}
+        };
+      }
 
       // Get current brand analysis
       const { data: currentAnalysis } = await supabase
@@ -308,7 +321,14 @@ class BackgroundJobProcessor {
         .is('achieved_at', null);
 
       return {
-        userProfile,
+        userProfile: userProfile ? {
+          id: userProfile.user_id,
+          firstName: userProfile.first_name,
+          lastName: userProfile.last_name,
+          industry: userProfile.industry,
+          experienceLevel: userProfile.experience_level,
+          primaryGoal: userProfile.primary_goal,
+        } : null,
         currentBrandScore: currentAnalysis,
         historicalData: historicalData || [],
         userGoals: userGoals || [],

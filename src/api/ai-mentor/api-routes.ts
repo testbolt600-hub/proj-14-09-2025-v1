@@ -384,14 +384,40 @@ export const getUserProfile = async (req: Request, res: Response) => {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
+    // Get user email from auth.users and profile data from user_profiles
+    const { data: authUser, error: authError } = await supabase.auth.getUser();
+    
+    if (authError || !authUser.user) {
+      return res.status(401).json({ error: 'User not found' });
+    }
+
     const { data: profile, error } = await supabase
-      .from('users')
+      .from('user_profiles')
       .select('*')
-      .eq('id', userId)
+      .eq('user_id', userId)
       .single();
 
-    if (error) {
+    if (error && error.code !== 'PGRST116') {
       throw error;
+    }
+
+    // If no profile exists, create a default one
+    if (!profile) {
+      const { data: newProfile, error: createError } = await supabase
+        .from('user_profiles')
+        .insert({
+          user_id: userId,
+          first_name: authUser.user.user_metadata?.first_name || '',
+          last_name: authUser.user.user_metadata?.last_name || '',
+        })
+        .select()
+        .single();
+
+      if (createError) {
+        throw createError;
+      }
+      
+      profile = newProfile;
     }
 
     // Get LinkedIn connection status
@@ -403,8 +429,8 @@ export const getUserProfile = async (req: Request, res: Response) => {
 
     res.json({
       profile: {
-        id: profile.id,
-        email: profile.email,
+        id: profile.user_id,
+        email: authUser.user.email,
         firstName: profile.first_name,
         lastName: profile.last_name,
         industry: profile.industry,
@@ -429,8 +455,9 @@ export const updateUserProfile = async (req: Request, res: Response) => {
       return res.status(401).json({ error: 'User not authenticated' });
     }
 
+    // Update data in user_profiles table instead of auth.users
     const { error } = await supabase
-      .from('users')
+      .from('user_profiles')
       .update({
         first_name: firstName,
         last_name: lastName,
@@ -439,7 +466,7 @@ export const updateUserProfile = async (req: Request, res: Response) => {
         primary_goal: primaryGoal,
         updated_at: new Date().toISOString()
       })
-      .eq('id', userId);
+      .eq('user_id', userId);
 
     if (error) {
       throw error;

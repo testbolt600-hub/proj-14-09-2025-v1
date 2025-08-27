@@ -26,15 +26,26 @@ export const supabase: SupabaseClient = (supabaseUrl && supabaseAnonKey)
 
 // Auth helper functions
 export const signUp = async (email: string, password: string, fullName: string) => {
+  // Extract first and last name from full name
+  const nameParts = fullName.trim().split(' ');
+  const firstName = nameParts[0] || '';
+  const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
         full_name: fullName,
+        first_name: firstName,
+        last_name: lastName,
       },
     },
   });
+
+  // The user_profiles entry will be created automatically by the database trigger
+  // No need to manually insert here as the trigger handles it
+
   return { data, error };
 };
 
