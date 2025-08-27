@@ -371,6 +371,7 @@ export const disconnectLinkedIn = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error disconnecting LinkedIn:', error);
     res.status(500.json({ error: 'Failed to disconnect LinkedIn' });
+    )
   }
 };
 
