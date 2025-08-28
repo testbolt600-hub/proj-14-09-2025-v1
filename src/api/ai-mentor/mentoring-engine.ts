@@ -172,6 +172,97 @@ class AIMentoringEngine {
     }
   }
 
+  async generateReputationInsight(userId: string, reputationData: any): Promise<MentorInsight> {
+    try {
+      let title = '';
+      let content = '';
+      let actionItems: ActionItem[] = [];
+      
+      switch (reputationData.reputationFocus) {
+        case 'visibility_improvement':
+          title = 'Boost Your Search Visibility 🔍';
+          content = 'Your reputation scan shows you\'re not appearing prominently in search results. This is a major opportunity to increase your professional visibility and attract more opportunities.';
+          actionItems = [
+            {
+              id: crypto.randomUUID(),
+              title: 'Create a professional website',
+              description: 'Build a personal website to rank on Page 1 of Google',
+              difficulty: 'medium',
+              estimatedTime: '4-6 hours',
+              category: 'seo',
+              completed: false
+            },
+            {
+              id: crypto.randomUUID(),
+              title: 'Optimize LinkedIn for search',
+              description: 'Update your LinkedIn headline with searchable keywords',
+              difficulty: 'easy',
+              estimatedTime: '30 minutes',
+              category: 'optimization',
+              completed: false
+            }
+          ];
+          break;
+          
+        case 'reputation_repair':
+          title = 'Address Reputation Issues 🛡️';
+          content = 'Your scan detected some negative or outdated content ranking for your name. Let\'s address these issues to protect your professional reputation.';
+          actionItems = [
+            {
+              id: crypto.randomUUID(),
+              title: 'Fix negative search results',
+              description: 'Address or remove problematic content appearing in search',
+              difficulty: 'easy',
+              estimatedTime: '2-3 hours',
+              category: 'reputation',
+              completed: false
+            }
+          ];
+          break;
+          
+        case 'content_freshness':
+          title = 'Refresh Your Online Content 📝';
+          content = 'Your content is getting outdated, which affects your search rankings and professional relevance. Fresh content will boost your authority and visibility.';
+          actionItems = [
+            {
+              id: crypto.randomUUID(),
+              title: 'Publish new content',
+              description: 'Write 2-3 new blog posts or LinkedIn articles',
+              difficulty: 'medium',
+              estimatedTime: '3-4 hours each',
+              category: 'content',
+              completed: false
+            }
+          ];
+          break;
+          
+        default:
+          title = 'Continue Building Authority 🚀';
+          content = 'Your online reputation is strong! Keep building authority through consistent, valuable content creation.';
+          actionItems = [];
+      }
+
+      const insight: MentorInsight = {
+        id: crypto.randomUUID(),
+        userId,
+        type: 'weekly',
+        title,
+        content,
+        actionItems,
+        priorityScore: 4,
+        estimatedImpact: '+20% online visibility',
+        generatedAt: new Date().toISOString(),
+        isRead: false
+      };
+
+      await this.storeMentorInsight(insight);
+      return insight;
+    } catch (error) {
+      console.error('Error generating reputation insight:', error);
+      throw error;
+    }
+  }
+
   private analyzeWeeklyProgress(context: MentoringContext) {
     const current = context.currentBrandScore;
     const previous = context.historicalData[0]; // Most recent previous analysis

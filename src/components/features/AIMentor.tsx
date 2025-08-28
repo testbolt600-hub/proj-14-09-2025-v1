@@ -21,7 +21,11 @@ import {
   MessageCircle,
   FileText,
   Link,
-  Download
+  Download,
+  Shield,
+  Search,
+  Globe,
+  X
 } from 'lucide-react';
 
 interface BrandScore {
@@ -30,6 +34,14 @@ interface BrandScore {
   engagement: number;
   professionalPresence: number;
   networkQuality: number;
+}
+
+interface ReputationScore {
+  overall: number;
+  visibility: number;
+  sentiment: number;
+  freshness: number;
+  authority: number;
 }
 
 interface Recommendation {
@@ -79,12 +91,14 @@ interface UserGoal {
 }
 
 const AIMentor = () => {
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'insights' | 'goals' | 'analysis' | 'settings'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'insights' | 'goals' | 'analysis' | 'reputation' | 'settings'>('dashboard');
   const [brandScore, setBrandScore] = useState<BrandScore | null>(null);
+  const [reputationScore, setReputationScore] = useState<ReputationScore | null>(null);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [insights, setInsights] = useState<MentorInsight[]>([]);
   const [goals, setGoals] = useState<UserGoal[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
   const [linkedinConnected, setLinkedinConnected] = useState(false);
   const [showNewGoalModal, setShowNewGoalModal] = useState(false);
   const [newGoal, setNewGoal] = useState({
@@ -102,6 +116,14 @@ const AIMentor = () => {
       engagement: 74,
       professionalPresence: 80,
       networkQuality: 76
+    });
+
+    setReputationScore({
+      overall: 75,
+      visibility: 68,
+      sentiment: 85,
+      freshness: 71,
+      authority: 79
     });
 
     setRecommendations([
@@ -211,6 +233,27 @@ const AIMentor = () => {
     }
   };
 
+  const startReputationScan = async () => {
+    setIsScanning(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 4000));
+      
+      // Update reputation score after scan
+      setReputationScore({
+        overall: 78,
+        visibility: 72,
+        sentiment: 87,
+        freshness: 74,
+        authority: 81
+      });
+    } catch (error) {
+      console.error('Error scanning reputation:', error);
+    } finally {
+      setIsScanning(false);
+    }
+  };
+
   const createGoal = async () => {
     if (!newGoal.goalType || !newGoal.targetValue || !newGoal.deadline) return;
     
@@ -297,6 +340,14 @@ const AIMentor = () => {
           Brand Analysis
         </button>
         <button
+          onClick={() => setActiveTab('reputation')}
+          className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+            activeTab === 'reputation' ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:text-white'
+          }`}
+        >
+          Reputation & SEO
+        </button>
+        <button
           onClick={() => setActiveTab('settings')}
           className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
             activeTab === 'settings' ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:text-white'
@@ -353,6 +404,56 @@ const AIMentor = () => {
                       <span className="text-gray-300">Network Quality</span>
                       <span className={`font-semibold ${getScoreColor(brandScore.networkQuality)}`}>
                         {brandScore.networkQuality}/100
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Reputation Score Overview */}
+            <div className="bg-[#111827] rounded-2xl p-6 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-gray-50 mb-6 flex items-center gap-2">
+                <Shield className="w-5 h-5 text-blue-400" />
+                Your Reputation & SEO Score
+              </h3>
+              
+              {reputationScore && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className={`text-5xl font-bold mb-2 ${getScoreColor(reputationScore.overall)}`}>
+                      {reputationScore.overall}
+                    </div>
+                    <div className="text-gray-400">Reputation Score</div>
+                    <div className="text-sm text-gray-500 mt-1">
+                      {reputationScore.overall >= 80 ? 'Strong Online Presence' : 
+                       reputationScore.overall >= 60 ? 'Good Visibility' : 'Needs SEO Work'}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Search Visibility</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.visibility)}`}>
+                        {reputationScore.visibility}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Sentiment</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.sentiment)}`}>
+                        {reputationScore.sentiment}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Content Freshness</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.freshness)}`}>
+                        {reputationScore.freshness}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Authority</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.authority)}`}>
+                        {reputationScore.authority}/100
                       </span>
                     </div>
                   </div>
@@ -419,6 +520,19 @@ const AIMentor = () => {
                 </button>
                 
                 <button
+                  onClick={startReputationScan}
+                  disabled={isScanning}
+                  className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50"
+                >
+                  {isScanning ? (
+                    <RefreshCw className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <Shield className="w-5 h-5" />
+                  )}
+                  {isScanning ? 'Scanning...' : 'Scan Reputation & SEO'}
+                </button>
+                
+                <button
                   onClick={() => setShowNewGoalModal(true)}
                   className="w-full flex items-center gap-3 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                 >
@@ -449,6 +563,10 @@ const AIMentor = () => {
                   <span className="text-green-400 font-semibold">+5 points</span>
                 </div>
                 <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Reputation Score</span>
+                  <span className="text-blue-400 font-semibold">+3 points</span>
+                </div>
+                <div className="flex justify-between items-center">
                   <span className="text-gray-300">Goals Completed</span>
                   <span className="text-blue-400 font-semibold">2 of 3</span>
                 </div>
@@ -475,6 +593,11 @@ const AIMentor = () => {
                 <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                   <p className="text-green-400 text-sm font-medium mb-1">Best Time to Post</p>
                   <p className="text-gray-300 text-sm">Your audience is most active on Tuesdays at 2 PM</p>
+                </div>
+                
+                <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg">
+                  <p className="text-purple-400 text-sm font-medium mb-1">SEO Opportunity</p>
+                  <p className="text-gray-300 text-sm">Creating a personal website could boost your search visibility by 25%</p>
                 </div>
               </div>
             </div>
@@ -573,6 +696,10 @@ const AIMentor = () => {
                   <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
                   <span className="text-gray-300 text-sm">Milestone Notifications</span>
                 </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
+                  <span className="text-gray-300 text-sm">Reputation & SEO Insights</span>
+                </div>
               </div>
             </div>
           </div>
@@ -644,6 +771,12 @@ const AIMentor = () => {
                 <button className="w-full text-left p-3 text-gray-300 hover:text-white hover:bg-gray-700/30 rounded-lg transition-colors">
                   Content Creation
                 </button>
+                <button className="w-full text-left p-3 text-gray-300 hover:text-white hover:bg-gray-700/30 rounded-lg transition-colors">
+                  Search Visibility
+                </button>
+                <button className="w-full text-left p-3 text-gray-300 hover:text-white hover:bg-gray-700/30 rounded-lg transition-colors">
+                  Online Reputation
+                </button>
               </div>
             </div>
           </div>
@@ -666,6 +799,201 @@ const AIMentor = () => {
             >
               {isAnalyzing ? 'Analyzing...' : 'Start Analysis'}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Reputation & SEO Tab */}
+      {activeTab === 'reputation' && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Reputation Overview */}
+            <div className="bg-[#111827] rounded-2xl p-6 border border-gray-700/50">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold text-gray-50 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-400" />
+                  Reputation & SEO Overview
+                </h3>
+                <button
+                  onClick={startReputationScan}
+                  disabled={isScanning}
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg font-medium hover:shadow-lg transition-all disabled:opacity-50"
+                >
+                  {isScanning ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      Scanning...
+                    </>
+                  ) : (
+                    <>
+                      <Search className="w-4 h-4" />
+                      Scan Now
+                    </>
+                  )}
+                </button>
+              </div>
+              
+              {reputationScore && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="text-center">
+                    <div className={`text-5xl font-bold mb-2 ${getScoreColor(reputationScore.overall)}`}>
+                      {reputationScore.overall}
+                    </div>
+                    <div className="text-gray-400">Reputation Score</div>
+                    <div className="text-sm text-gray-500 mt-1">
+                      {reputationScore.overall >= 80 ? 'Strong Online Presence' : 
+                       reputationScore.overall >= 60 ? 'Good Visibility' : 'Needs SEO Work'}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Search Visibility</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.visibility)}`}>
+                        {reputationScore.visibility}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Sentiment</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.sentiment)}`}>
+                        {reputationScore.sentiment}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Content Freshness</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.freshness)}`}>
+                        {reputationScore.freshness}/100
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Authority</span>
+                      <span className={`font-semibold ${getScoreColor(reputationScore.authority)}`}>
+                        {reputationScore.authority}/100
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* AI Mentor Integration */}
+              <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-lg p-4 border border-purple-500/20">
+                <h4 className="font-medium text-purple-400 mb-2">AI Mentor Integration</h4>
+                <p className="text-gray-300 text-sm mb-3">
+                  Your reputation scan shows opportunities for improvement. The AI Mentor has created a personalized action plan to boost your online presence.
+                </p>
+                <button
+                  onClick={() => setActiveTab('insights')}
+                  className="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition-colors"
+                >
+                  View Mentor Insights
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Top SEO Recommendations */}
+            <div className="bg-[#111827] rounded-2xl p-6 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-gray-50 mb-6">Priority SEO Actions</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-[#1F2937] rounded-lg p-4 border border-red-500/30">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400">
+                        high priority
+                      </span>
+                      <span className="text-gray-400 text-sm">visibility</span>
+                    </div>
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                  </div>
+                  
+                  <h4 className="font-semibold text-gray-50 mb-2">Create Professional Website</h4>
+                  <p className="text-gray-300 text-sm mb-3">You don't have a personal website ranking on Page 1. This is a major opportunity.</p>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-blue-400 text-sm font-medium">
+                      Expected Impact: +25% search visibility
+                    </span>
+                    <button className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
+                      Start Action
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-[#1F2937] rounded-lg p-4 border border-yellow-500/30">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400">
+                        medium priority
+                      </span>
+                      <span className="text-gray-400 text-sm">content</span>
+                    </div>
+                    <AlertCircle className="w-4 h-4 text-yellow-400" />
+                  </div>
+                  
+                  <h4 className="font-semibold text-gray-50 mb-2">Publish Fresh Content</h4>
+                  <p className="text-gray-300 text-sm mb-3">Your most recent content is from 6 months ago. Fresh content improves search rankings.</p>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-blue-400 text-sm font-medium">
+                      Expected Impact: +15% content freshness
+                    </span>
+                    <button className="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg text-sm font-medium transition-colors">
+                      Plan Content
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-[#111827] rounded-2xl p-6 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-gray-50 mb-4">Platform Coverage</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Search className="w-4 h-4 text-red-500" />
+                    <span className="text-gray-300 text-sm">Google Search</span>
+                  </div>
+                  <span className="text-red-400 text-sm">Weak</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Link className="w-4 h-4 text-blue-500" />
+                    <span className="text-gray-300 text-sm">LinkedIn</span>
+                  </div>
+                  <span className="text-green-400 text-sm">Strong</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-gray-600" />
+                    <span className="text-gray-300 text-sm">GitHub</span>
+                  </div>
+                  <span className="text-yellow-400 text-sm">Needs Work</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#111827] rounded-2xl p-6 border border-gray-700/50">
+              <h3 className="text-lg font-semibold text-gray-50 mb-4">Recent Alerts</h3>
+              <div className="space-y-3">
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                  <p className="text-red-400 text-sm font-medium mb-1">Negative Content</p>
+                  <p className="text-gray-300 text-sm">Old GitHub repo with issues ranking #8</p>
+                </div>
+                
+                <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                  <p className="text-yellow-400 text-sm font-medium mb-1">Visibility Drop</p>
+                  <p className="text-gray-300 text-sm">Search visibility decreased by 12%</p>
+                </div>
+                
+                <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <p className="text-blue-400 text-sm font-medium mb-1">New Mention</p>
+                  <p className="text-gray-300 text-sm">Featured in DevCon 2024 announcement</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -697,6 +1025,12 @@ const AIMentor = () => {
                     <span className="inline-block w-4 h-4 transform bg-white rounded-full transition"></span>
                   </button>
                 </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-300">Reputation alerts</span>
+                  <button className="relative inline-flex items-center h-6 rounded-full w-11 bg-indigo-600">
+                    <span className="translate-x-6 inline-block w-4 h-4 transform bg-white rounded-full transition"></span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -709,6 +1043,15 @@ const AIMentor = () => {
                     <option>Daily</option>
                     <option>Weekly</option>
                     <option>Manual only</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-300 mb-2">Reputation Monitoring</label>
+                  <select className="w-full px-3 py-2 bg-[#1F2937] border border-gray-600 rounded-lg text-gray-50">
+                    <option>Daily scans</option>
+                    <option>Weekly scans</option>
+                    <option>Monthly scans</option>
+                    <option>Disabled</option>
                   </select>
                 </div>
               </div>
@@ -744,6 +1087,8 @@ const AIMentor = () => {
                   <option value="Improve Engagement Rate">Improve Engagement Rate</option>
                   <option value="Grow Network Connections">Grow Network Connections</option>
                   <option value="Increase Profile Views">Increase Profile Views</option>
+                  <option value="Improve Search Visibility">Improve Search Visibility</option>
+                  <option value="Build Online Authority">Build Online Authority</option>
                 </select>
               </div>
 

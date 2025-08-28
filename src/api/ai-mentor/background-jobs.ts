@@ -133,6 +133,9 @@ class BackgroundJobProcessor {
         case 'achievement-check':
           result = await this.processAchievementCheck(job);
           break;
+        case 'reputation-scan':
+          result = await this.processReputationScan(job);
+          break;
         default:
           throw new Error(`Unknown job type: ${job.job_type}`);
       }
@@ -248,6 +251,37 @@ class BackgroundJobProcessor {
     }
   }
 
+  private async processReputationScan(job: any): Promise<JobResult> {
+    try {
+      const { userId, settings } = job.job_data;
+      
+      // Import reputation monitoring service
+      const { reputationMonitoringService } = await import('../reputation-monitor/reputation-service');
+      
+      // Perform reputation scan
+      const scanResult = await reputationMonitoringService.scanUserReputation(userId, settings);
+      
+      // Generate AI Mentor insights from reputation data
+      const mentorInsights = await reputationMonitoringService.generateMentorInsightFromReputation(userId, scanResult);
+      
+      // Create mentor insight if significant findings
+      if (mentorInsights.reputationFocus !== 'authority_building') {
+        await aiMentoringEngine.generateReputationInsight(userId, mentorInsights);
+      }
+      
+      return {
+        success: true,
+        result: { scanId: scanResult.id, insights: mentorInsights },
+        completedAt: new Date().toISOString()
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Reputation scan failed',
+        completedAt: new Date().toISOString()
+      };
+    }
+  }
   private async processAchievementCheck(job: any): Promise<JobResult> {
     try {
       const { userId } = job.job_data;

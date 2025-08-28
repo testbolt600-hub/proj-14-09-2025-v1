@@ -4,6 +4,7 @@ import { brandAnalysisService } from './brand-analysis';
 import { aiMentoringEngine } from './mentoring-engine';
 import { dataIntegrationService } from './data-integration';
 import { backgroundJobProcessor } from './background-jobs';
+import { reputationMonitoringService } from '../reputation-monitor/reputation-service';
 
 // Authentication middleware
 export const authenticateUser = async (req: Request, res: Response, next: any) => {
@@ -61,6 +62,109 @@ export const analyzeBrand = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error starting brand analysis:', error);
     res.status(500).json({ error: 'Failed to start brand analysis' });
+  }
+};
+
+// Reputation Monitoring Routes
+export const startReputationScan = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    // Get user's monitoring settings
+    const settings = await reputationMonitoringService.getMonitoringSettings(userId);
+    
+    if (!settings) {
+      // Create default settings if none exist
+      await reputationMonitoringService.updateMonitoringSettings(userId, {
+        platforms: ['google', 'linkedin', 'github'],
+        keywords: [],
+        scanFrequency: 'daily',
+        alertFrequency: 'daily',
+        isActive: true
+      });
+      
+      const defaultSettings = await reputationMonitoringService.getMonitoringSettings(userId);
+      if (!defaultSettings) {
+        return res.status(500).json({ error: 'Failed to create monitoring settings' });
+      }
+      settings = defaultSettings;
+    }
+
+    // Schedule background reputation scan job
+    const jobId = await backgroundJobProcessor.scheduleJob({
+      type: 'reputation-scan',
+      userId,
+      data: { userId, settings },
+      priority: 3,
+      attempts: 0,
+      maxAttempts: 3,
+      scheduledAt: new Date().toISOString()
+    });
+
+    res.json({ 
+      message: 'Reputation scan started',
+      jobId,
+      estimatedCompletion: '3-5 minutes'
+    });
+  } catch (error) {
+    console.error('Error starting reputation scan:', error);
+    res.status(500).json({ error: 'Failed to start reputation scan' });
+  }
+};
+
+export const getReputationDashboard = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    // Get latest reputation scan
+    const { data: latestScan, error: scanError } = await supabase
+      .from('reputation_scans')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    if (scanError && scanError.code !== 'PGRST116') {
+      throw scanError;
+    }
+
+    // Get unread alerts
+    const unreadAlerts = await reputationMonitoringService.getUserAlerts(userId, 10);
+    const unreadCount = unreadAlerts.filter(alert => !alert.isRead).length;
+
+    res.json({
+      latestScan: latestScan ? {
+        id: latestScan.id,
+        overallScore: latestScan.overall_score,
+        scores: {
+          visibility: latestScan.visibility_score,
+          sentiment: latestScan.sentiment_score,
+          freshness: latestScan.freshness_score,
+          authority: latestScan.authority_score
+        },
+        createdAt: latestScan.created_at
+      } : null,
+      unreadAlertsCount: unreadCount,
+      recentAlerts: unreadAlerts.slice(0, 3).map(alert => ({
+        id: alert.id,
+        type: alert.type,
+        title: alert.title,
+        description: alert.description,
+        severity: alert.severity,
+        createdAt: alert.createdAt
+      }))
+    });
+  } catch (error) {
+    console.error('Error fetching reputation dashboard:', error);
+    res.status(500).json({ error: 'Failed to fetch reputation dashboard' });
   }
 };
 
@@ -370,8 +474,7 @@ export const disconnectLinkedIn = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error('Error disconnecting LinkedIn:', error);
-    res.status(500.json({ error: 'Failed to disconnect LinkedIn' });
-    )
+    res.status(500).json({ error: 'Failed to disconnect LinkedIn' });
   }
 };
 

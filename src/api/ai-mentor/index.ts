@@ -19,7 +19,9 @@ import {
   updateUserProfile,
   getUserAnalytics,
   healthCheck,
-  errorHandler
+  errorHandler,
+  startReputationScan,
+  getReputationDashboard
 } from './api-routes';
 import { cronScheduler } from './background-jobs';
 
@@ -68,6 +70,9 @@ app.post('/api/brand/analyze', analyzeBrand);
 app.get('/api/brand/analysis/:analysisId', getBrandAnalysis);
 app.get('/api/brand/analysis/:userId/history', getBrandAnalysisHistory);
 
+// Reputation Monitoring Routes
+app.post('/api/reputation/scan', startReputationScan);
+app.get('/api/reputation/dashboard', getReputationDashboard);
 // Mentor Insights Routes
 app.get('/api/mentor/insights/:userId', getMentorInsights);
 app.post('/api/mentor/insights/:insightId/feedback', updateInsightFeedback);
