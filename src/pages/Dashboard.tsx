@@ -41,6 +41,7 @@ import InterviewPrepKit from '../components/features/InterviewPrepKit';
 import ContentEngine from '../components/features/ContentEngine';
 import CareerPortfolio from '../components/features/CareerPortfolio';
 import AIMentor from '../components/features/AIMentor';
+import CareerEventScout from '../components/features/CareerEventScout';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -108,6 +109,12 @@ const Dashboard = () => {
           path: '/dashboard/ai-mentor',
           icon: Brain,
           description: 'Personal AI coach for career and brand development'
+        },
+        {
+          name: 'AI Career Event Scout & Networking Assistant',
+          path: '/dashboard/career-event-scout',
+          icon: Users,
+          description: 'Discover events, track role models, and build meaningful connections'
         }
       ]
     },
@@ -314,6 +321,7 @@ const Dashboard = () => {
               <Route path="/comment-helper" element={<CommentHelper />} />
               <Route path="/team-management" element={<TeamManagement />} />
               <Route path="/ai-mentor" element={<AIMentor />} />
+              <Route path="/career-event-scout" element={<CareerEventScout />} />
             </Routes>
           </div>
         </main>
