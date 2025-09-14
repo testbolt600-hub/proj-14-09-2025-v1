@@ -1,6 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import TrustedBrands from '../components/TrustedBrands';
+import ProductTabs from '../components/ProductTabs';
+import ScrollCarousel from '../components/ScrollCarousel';
 import Problem from '../components/Problem';
 import Solution from '../components/Solution';
 import Benefits from '../components/Benefits';
@@ -16,6 +19,9 @@ const Home = () => {
     <div className="bg-slate-50 min-h-screen">
       <Header />
       <Hero />
+      <TrustedBrands />
+      <ProductTabs />
+      <ScrollCarousel />
       <Problem />
       <Solution />
       <Benefits />
